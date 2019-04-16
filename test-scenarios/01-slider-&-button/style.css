@@ -1,0 +1,23 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  display: block;
+}
+
+#button{
+  width: 180px;
+  height: 60px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  border-radius: 8;
+  background: #FFFFFF;
+
+}
+
+#slider{
+  width: 300px;
+  height: 20px;
+  background: white;
+}
