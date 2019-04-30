@@ -1,0 +1,44 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  display: block;
+}
+
+#button{
+  width: 200px;
+  height: 60px;
+border-radius: 8px;
+ background-color: #4CAF50; /* Green */
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 18px;
+ font-family: 'Open Sans', sans-serif;
+ font-weight: 800;
+
+}
+
+#slider{
+  -webkit-appearance: none;
+   width: 250px;
+   height: 15px;
+   border-radius: 5px;
+   background: #4CAF50;
+   outline: none;
+   opacity: 1;
+   -webkit-transition: .1s;
+   transition: opacity .2s;
+}
+
+#boba{
+  opacity: 0.5;
+}
+
+#toba{
+  opacity: 1;
+}
