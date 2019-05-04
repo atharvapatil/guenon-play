@@ -29,23 +29,24 @@ function preload(){
   monkeyRed4 = loadImage('/images/monkeyRed4.svg');
   monkeyRed5 = loadImage('/images/monkeyRed5.svg');
 
+  //Base Monkey
   monkeyYellow1 = loadImage('/images/monkeyYellow1.svg');
   monkeyYellow2 = loadImage('/images/monkeyYellow2.svg');
   monkeyYellow3 = loadImage('/images/monkeyYellow3.svg');
   monkeyYellow4 = loadImage('/images/monkeyYellow4.svg');
   monkeyYellow5 = loadImage('/images/monkeyYellow5.svg');
 
-  monkeyRed1 = loadImage('/images/monkeyRed1.svg');
-  monkeyRed2 = loadImage('/images/monkeyRed2.svg');
-  monkeyRed3 = loadImage('/images/monkeyRed3.svg');
-  monkeyRed4 = loadImage('/images/monkeyRed4.svg');
-  monkeyRed5 = loadImage('/images/monkeyRed5.svg');
-
   monkeyBrown1 = loadImage('/images/monkeyBrown1.svg');
   monkeyBrown2 = loadImage('/images/monkeyBrown2.svg');
   monkeyBrown3 = loadImage('/images/monkeyBrown3.svg');
   monkeyBrown4 = loadImage('/images/monkeyBrown4.svg');
   monkeyBrown5 = loadImage('/images/monkeyBrown5.svg');
+
+  monkeyPink1 = loadImage('/images/monkeyPink1.svg');
+  monkeyPink2 = loadImage('/images/monkeyPink2.svg');
+  monkeyPink3 = loadImage('/images/monkeyPink3.svg');
+  monkeyPink4 = loadImage('/images/monkeyPink4.svg');
+  monkeyPink5 = loadImage('/images/monkeyPink5.svg');
 
   img = loadImage('/images/test.svg');
 }
@@ -54,14 +55,14 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
 
   // Monkey slider
-  sliderMonkeys = createSlider(0, 5, 0);
+  sliderMonkeys = createSlider(0, 3, 0);
   sliderMonkeys.position(width - 200 - sliderMonkeys.width, height/2 );
   sliderMonkeys.id('slider');
 
   // Evolution slider
-  sliderEvolution = createSlider(1, 5, 1);
+  sliderEvolution = createSlider(1, 4, 1);
   sliderEvolution.position(width - 200 - sliderEvolution.width, height/2 + 50);
-  sliderEvolution.id('slider');
+  sliderEvolution.id('sliderEvolution');
 
 }
 
@@ -76,17 +77,18 @@ function draw() {
 
   text('Monkeys' + monkeySliderValue ,20,30);
   text('Time' + evolutionSliderValue ,20,60);
+  text('Evolution case' + evolutionCase ,30, 90);
 
   // Check for the evolution Enumerations
   evolutionEnumerations();
 
-  noStroke();
-  fill(r, g, b);
-  ellipse(width/2, height/2, 100);
+  // noStroke();
+  // fill(r, g, b);
+  // ellipse(width/2, height/2, 100);
 
   switch (evolutionCase){
     case 1:
-      handleCaseOne();  // No other monkeys
+      handleCaseOne();  // Monkey Slider zero evolution case any
       console.log(evolutionCase);
       break;
     case 2:
@@ -137,38 +139,6 @@ function draw() {
       handleCaseThirteen();
       console.log(evolutionCase);
       break;
-    case 14:
-      handleCaseFourteen();
-      console.log(evolutionCase);
-      break;
-    case 15:
-      handleCaseFifteen();
-      console.log(evolutionCase);
-      break;
-    case 16:
-      handleCaseSixteen();
-      console.log(evolutionCase);
-      break;
-    case 17:
-      handleCaseSeventeen();
-      console.log(evolutionCase);
-      break;
-    case 18:
-      handleCaseEighteen();
-      console.log(evolutionCase);
-      break;
-    case 19:
-      handleCaseNineteen();
-      console.log(evolutionCase);
-      break;
-    case 20:
-      handleCaseTwenty();
-      console.log(evolutionCase);
-      break;
-    case 21:
-      handleCaseTwentyOne();
-      console.log(evolutionCase);
-      break;
 
     default:
       fill(255);
@@ -181,105 +151,122 @@ function drawBG(){
     background(40);
 }
 
-// No other monkeys
+// No monkeys & any evolution
 function handleCaseOne(){
 
-  image(img, 100, 100, 150, 176);
+  image(monkeyYellow1, 100, 100, 150, 176);
   r = 255;
   g = 20;
   b = 255;
 }
 
-// 1 monkey and 0 evolution
+// 1 other monkey and no(1) evolution
 function handleCaseTwo(){
 
-  image(img, 100, 100, 50, 60);
-  image(img, 100, 300, 90, 60);
+  image(monkeyYellow1, 100, 100, 150, 176);
+  image(monkeyBrown1, 100, 400, 150, 176);
 }
 
+//  1 other monkey and 2 evolution
 function handleCaseThree(){
 
-  image(img, 100, 100, 50, 60);
-  image(img, 100, 300, 90, 60);
-  image(img, 400, 300, 30, 60);
+image(monkeyYellow1, 100, 100, 150, 176);
+image(monkeyBrown2, 100, 400, 150, 176);
 
 }
 
+// 1 other monkey and 3 evolution
 function handleCaseFour(){
-
+image(monkeyYellow2, 100, 100, 150, 176);
+image(monkeyBrown2, 100, 400, 150, 176);
 }
 
+// 1 other monkey and 4 evolution
 function handleCaseFive(){
-
+image(monkeyYellow2, 100, 100, 150, 176);
+image(monkeyBrown3, 100, 400, 150, 176);
 }
 
+// 2 other monkeys and 1 evolution
 function handleCaseSix(){
+  image(monkeyYellow1, 100, 100, 150, 176);
+
+  image(monkeyBrown1, 100, 400, 150, 176);
+  image(monkeyRed1, 300, 500, 150, 176);
 
 }
 
+// 2 other monkeys and 2 evolution
 function handleCaseSeven(){
+image(monkeyYellow2, 100, 100, 150, 176);
+
+image(monkeyBrown2, 100, 400, 150, 176);
+image(monkeyRed2, 300, 500, 150, 176);
 
 }
 
+// 2 other monkeys and 3 evolution
 function handleCaseEight(){
+  image(monkeyYellow3, 100, 100, 150, 176);
 
+  image(monkeyBrown2, 100, 400, 150, 176);
+  image(monkeyRed3, 300, 500, 150, 176);
 }
 
+// 2 other monkeys and 4 evolution
 function handleCaseNine(){
+  image(monkeyYellow4, 100, 100, 150, 176);
 
+  image(monkeyBrown3, 100, 400, 150, 176);
+  image(monkeyRed4, 300, 500, 150, 176);
 }
 
+// 3 other monkeys and 1 evolution
 function handleCaseTen(){
+  image(monkeyYellow1, 100, 100, 150, 176);
+
+  image(monkeyBrown1, 100, 400, 150, 176);
+  image(monkeyRed1, 300, 500, 150, 176);
+  image(monkeyPink1, 500, 200, 150, 176);
 
 }
 
+// 3 other monkeys and 2 evolution
 function handleCaseEleven(){
+  image(monkeyYellow2, 100, 100, 150, 176);
+
+  image(monkeyBrown2, 100, 400, 150, 176);
+  image(monkeyRed2, 300, 500, 150, 176);
+  image(monkeyPink2, 500, 200, 150, 176);
 
 }
 
+// 3 other monkeys and 3 evolution
 function handleCaseTwelve(){
+  image(monkeyYellow3, 100, 100, 150, 176);
+
+  image(monkeyBrown3, 100, 400, 150, 176);
+  image(monkeyRed3, 300, 500, 150, 176);
+  image(monkeyPink3, 500, 200, 150, 176);
 
 }
 
+// 3 other monkeys and 4 evolution
 function handleCaseThirteen(){
+  image(monkeyYellow4, 100, 100, 150, 176);
+
+  image(monkeyBrown4, 100, 400, 150, 176);
+  image(monkeyRed4, 300, 500, 150, 176);
+  image(monkeyPink4, 500, 200, 150, 176);
 
 }
 
-function handleCaseFourteen(){
-
-}
-
-function handleCaseFifteen(){
-
-}
-
-function handleCaseSixteen(){
-
-}
-
-
-function handleCaseSeventeen(){
-
-}
-
-function handleCaseEighteen(){
-
-}
-
-function handleCaseNineteen(){
-
-}
-
-function handleCaseTwenty(){
-
-}
-
-function handleCaseTwentyOne(){
-
-}
 
 
 // Evolution Enumerations
+
+// Monkey Slider goes from 0, 3  which is 1,2,3 other monkeys
+// Evolution slider goes from 1,4 which is 1, 2, 3, 4
 
 function evolutionEnumerations(){
 
@@ -287,45 +274,29 @@ function evolutionEnumerations(){
     evolutionCase = 1;
   } else if(monkeySliderValue == 1 && evolutionSliderValue == 1){
     evolutionCase = 2;
-  } else if(monkeySliderValue == 2 && evolutionSliderValue == 1){
-    evolutionCase = 3;
-  } else if(monkeySliderValue == 3 && evolutionSliderValue == 1){
-    evolutionCase = 4;
-  } else if(monkeySliderValue == 4 && evolutionSliderValue == 1){
-    evolutionCase = 5;
-  } else if(monkeySliderValue == 5 && evolutionSliderValue == 1){
-    evolutionCase = 6;
   } else if(monkeySliderValue == 1 && evolutionSliderValue == 2){
-    evolutionCase = 7;
-  } else if(monkeySliderValue == 2 && evolutionSliderValue == 2){
-    evolutionCase = 8;
-  } else if(monkeySliderValue == 3 && evolutionSliderValue == 2){
-    evolutionCase = 9;
-  } else if(monkeySliderValue == 4 && evolutionSliderValue == 2){
-    evolutionCase = 10;
-  } else if(monkeySliderValue == 5 && evolutionSliderValue == 2){
-    evolutionCase = 11;
+    evolutionCase = 3;
   } else if(monkeySliderValue == 1 && evolutionSliderValue == 3){
-    evolutionCase = 12;
-  } else if(monkeySliderValue == 2 && evolutionSliderValue == 3){
-    evolutionCase = 13;
-  } else if(monkeySliderValue == 3 && evolutionSliderValue == 3){
-    evolutionCase = 14;
-  } else if(monkeySliderValue == 4 && evolutionSliderValue == 3){
-    evolutionCase = 15;
-  } else if(monkeySliderValue == 5 && evolutionSliderValue == 3){
-    evolutionCase = 16;
+    evolutionCase = 4;
   } else if(monkeySliderValue == 1 && evolutionSliderValue == 4){
-    evolutionCase = 17;
+    evolutionCase = 5;
+  } else if(monkeySliderValue == 2 && evolutionSliderValue == 1){
+    evolutionCase = 6;
+  } else if(monkeySliderValue == 2 && evolutionSliderValue == 2){
+    evolutionCase = 7;
+  } else if(monkeySliderValue == 2 && evolutionSliderValue == 3){
+    evolutionCase = 8;
   } else if(monkeySliderValue == 2 && evolutionSliderValue == 4){
-    evolutionCase = 18;
+    evolutionCase = 9;
+  } else if(monkeySliderValue == 3 && evolutionSliderValue == 1){
+    evolutionCase = 10;
+  } else if(monkeySliderValue == 3 && evolutionSliderValue == 2){
+    evolutionCase = 11;
+  } else if(monkeySliderValue == 3 && evolutionSliderValue == 3){
+    evolutionCase = 12;
   } else if(monkeySliderValue == 3 && evolutionSliderValue == 4){
-    evolutionCase = 19;
-  } else if(monkeySliderValue == 4 && evolutionSliderValue == 4){
-    evolutionCase = 20;
-  } else if(monkeySliderValue == 5 && evolutionSliderValue == 4){
-    evolutionCase = 21;
-  } else{
+    evolutionCase = 13;
+  } else {
     evolutionCase = 0;
   }
 
