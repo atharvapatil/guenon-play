@@ -3,13 +3,12 @@
 // https://p5js.org/reference/#/p5/createSlider
 
 //Prevent default page scrolling
-// document.ontouchmove = function(event){
-//   event.preventDefault();
-// }
+document.ontouchmove = function(event){
+  event.preventDefault();
+}
 
 let sliderMonkeys, sliderEvolution;
 let button;
-let r, g, b;
 let monkeySliderValue, evolutionSliderValue;
 let img, img2, img3;
 
@@ -18,10 +17,15 @@ let evolutionCase;
 
 let monkeyBrown1, monkeyBrown2, monkeyBrown3, monkeyBrown4, monkeyBrown5;
 let monkeyYellow1, monkeyYellow2, monkeyYellow3, monkeyYellow4, monkeyYellow5;
-let monkeyRed1,  monkeyRed2,  monkeyRed3,  monkeyRed4,  monkeyRed5;
-let monkeyPink1,  monkeyPink2,  monkeyPink3,  monkeyPink4,  monkeyPink5;
+let monkeyRed1, monkeyRed2, monkeyRed3, monkeyRed4, monkeyRed5;
+let monkeyPink1, monkeyPink2, monkeyPink3, monkeyPink4, monkeyPink5;
 
-function preload(){
+let jungleBackground;
+let imgBG;
+
+let sliderHeading, sliderHelpText;
+
+function preload() {
 
   monkeyRed1 = loadImage('/images/monkeyRed1.svg');
   monkeyRed2 = loadImage('/images/monkeyRed2.svg');
@@ -48,7 +52,7 @@ function preload(){
   monkeyPink4 = loadImage('/images/monkeyPink4.svg');
   monkeyPink5 = loadImage('/images/monkeyPink5.svg');
 
-  img = loadImage('/images/test.svg');
+  imgBG = loadImage('/images/background.png');
 }
 
 function setup() {
@@ -56,16 +60,31 @@ function setup() {
 
   // Monkey slider
   sliderMonkeys = createSlider(0, 3, 0);
-  sliderMonkeys.position(width - 200 - sliderMonkeys.width, height/2 );
+  sliderMonkeys.position(150, height - 100);
   sliderMonkeys.id('slider');
+  // sliderMonkeys.hide();
 
   // Evolution slider
   sliderEvolution = createSlider(1, 4, 1);
-  sliderEvolution.position(width - 200 - sliderEvolution.width, height/2 + 50);
+  sliderEvolution.position(600, height - 100);
   sliderEvolution.id('sliderEvolution');
+  // sliderEvolution.hide();
+
+  sliderHeading = createDiv('Instructions', width - 600, 120);
+  sliderHeading.id('sliderHeading');
+  sliderHeading.position(width - 600, 100);
+  sliderHeading.hide();
+
+  sliderHelpText = createDiv('move the species & time sliders to see how monkeys evolve different charecteristics over time.', width - 600, 120);
+  sliderHelpText.id('sliderHelpText');
+  sliderHelpText.position(width - 600, 180);
+  sliderHelpText.hide();
+
+  button = createButton('Next');
+  button.id('button');
+  button.position(width - button.width - 100, height -button.height- 80 );
 
 }
-
 
 function draw() {
 
@@ -75,24 +94,204 @@ function draw() {
   monkeySliderValue = sliderMonkeys.value();
   evolutionSliderValue = sliderEvolution.value();
 
-  text('Monkeys' + monkeySliderValue ,20,30);
-  text('Time' + evolutionSliderValue ,20,60);
-  text('Evolution case' + evolutionCase ,30, 90);
+  // Number of monkeys slider header
+  push();
+  textSize(30);
+  textFont('Noto Sans');
+  fill('#00b0ff');
+  text('guenons species: ' + (monkeySliderValue + 1), 150, height - 120);
+  pop();
+
+  /// Year of evolution in the timescale
+  push();
+  textSize(30);
+  textFont('Noto Sans');
+  fill('orange');
+  text('Time: ' + evolutionSliderValue * 1000 + ' B.C', 600, height - 120);
+  pop();
+
+
+  text('Evolution case' + evolutionCase, 30, 90);
 
   // Check for the evolution Enumerations
   evolutionEnumerations();
+  // Switch cases for different evolution cases
+  evolutionSwitcher();
 
-  // noStroke();
-  // fill(r, g, b);
-  // ellipse(width/2, height/2, 100);
+  interactInstructions();
 
-  switch (evolutionCase){
+}
+
+function drawBG() {
+  background('black');
+  jungleBackground = image(imgBG, 100, 50, 1100, 700);
+  // jungleBackground.hide();
+}
+
+function interactInstructions() {
+
+  sliderHeading.show();
+
+  sliderHelpText.show();
+
+}
+
+// No monkeys & any evolution
+function handleCaseOne() {
+  image(monkeyYellow1, 450, 390, 150, 176);
+}
+
+// 1 other monkey and no(1) evolution
+function handleCaseTwo() {
+
+  image(monkeyYellow1, 450, 390, 150, 176);
+  image(monkeyBrown1, 300, 150, 150, 176);
+
+  // sliderHelpText.html('With the arrival of a new monkey the original monkey will evolve new features. Jump into the future to see changes.')
+}
+
+//  1 other monkey and 2 evolution
+function handleCaseThree() {
+
+  image(monkeyYellow1, 450, 390, 150, 176);
+  image(monkeyBrown2, 300, 150, 150, 176);
+
+}
+
+// 1 other monkey and 3 evolution
+function handleCaseFour() {
+  image(monkeyYellow2, 450, 390, 150, 176);
+  image(monkeyBrown2, 300, 150, 150, 176);
+}
+
+// 1 other monkey and 4 evolution
+function handleCaseFive() {
+  image(monkeyYellow2, 450, 390, 150, 176);
+  image(monkeyBrown3, 300, 150, 150, 176);
+}
+
+// 2 other monkeys and 1 evolution
+function handleCaseSix() {
+  image(monkeyYellow1, 450, 390, 150, 176);
+
+  image(monkeyBrown1, 300, 150, 150, 176);
+  image(monkeyRed1, 850, 220, 150, 176);
+
+}
+
+// 2 other monkeys and 2 evolution
+function handleCaseSeven() {
+  image(monkeyYellow2, 450, 390, 150, 176);
+
+  image(monkeyBrown2, 300, 150, 150, 176);
+  image(monkeyRed2, 850, 220, 150, 176);
+
+}
+
+// 2 other monkeys and 3 evolution
+function handleCaseEight() {
+  image(monkeyYellow3, 450, 390, 150, 176);
+
+  image(monkeyBrown2, 300, 150, 150, 176);
+  image(monkeyRed3, 850, 220, 150, 176);
+}
+
+// 2 other monkeys and 4 evolution
+function handleCaseNine() {
+  image(monkeyYellow4, 450, 390, 150, 176);
+
+  image(monkeyBrown3, 300, 150, 150, 176);
+  image(monkeyRed4, 850, 220, 150, 176);
+}
+
+// 3 other monkeys and 1 evolution
+function handleCaseTen() {
+  image(monkeyYellow1, 450, 390, 150, 176);
+
+  image(monkeyBrown1, 300, 150, 150, 176);
+  image(monkeyRed1, 850, 220, 150, 176);
+  image(monkeyPink1, 800, 480, 150, 176);
+
+}
+
+// 3 other monkeys and 2 evolution
+function handleCaseEleven() {
+  image(monkeyYellow2, 450, 390, 150, 176);
+
+  image(monkeyBrown2, 300, 150, 150, 176);
+  image(monkeyRed2, 850, 220, 150, 176);
+  image(monkeyPink2,  800, 480, 150, 176);
+
+}
+
+// 3 other monkeys and 3 evolution
+function handleCaseTwelve() {
+  image(monkeyYellow3, 450, 390, 150, 176);
+
+  image(monkeyBrown3, 300, 150, 150, 176);
+  image(monkeyRed3, 850, 220, 150, 176);
+  image(monkeyPink3,  800, 480, 150, 176);
+
+}
+
+// 3 other monkeys and 4 evolution
+function handleCaseThirteen() {
+  image(monkeyYellow4, 450, 390, 150, 176);
+
+  image(monkeyBrown4, 300, 150, 150, 176);
+  image(monkeyRed4, 850, 220, 150, 176);
+  image(monkeyPink4,  800, 480, 150, 176);
+
+}
+
+// Evolution Enumerations
+
+// Monkey Slider goes from 0, 3  which is 1,2,3 other monkeys
+// Evolution slider goes from 1,4 which is 1, 2, 3, 4
+
+function evolutionEnumerations() {
+
+  if (monkeySliderValue == 0 && (evolutionSliderValue == 1 || evolutionSliderValue == 2 || evolutionSliderValue == 3 || evolutionSliderValue == 4 || evolutionSliderValue == 5)) {
+    evolutionCase = 1;
+  } else if (monkeySliderValue == 1 && evolutionSliderValue == 1) {
+    evolutionCase = 2;
+  } else if (monkeySliderValue == 1 && evolutionSliderValue == 2) {
+    evolutionCase = 3;
+  } else if (monkeySliderValue == 1 && evolutionSliderValue == 3) {
+    evolutionCase = 4;
+  } else if (monkeySliderValue == 1 && evolutionSliderValue == 4) {
+    evolutionCase = 5;
+  } else if (monkeySliderValue == 2 && evolutionSliderValue == 1) {
+    evolutionCase = 6;
+  } else if (monkeySliderValue == 2 && evolutionSliderValue == 2) {
+    evolutionCase = 7;
+  } else if (monkeySliderValue == 2 && evolutionSliderValue == 3) {
+    evolutionCase = 8;
+  } else if (monkeySliderValue == 2 && evolutionSliderValue == 4) {
+    evolutionCase = 9;
+  } else if (monkeySliderValue == 3 && evolutionSliderValue == 1) {
+    evolutionCase = 10;
+  } else if (monkeySliderValue == 3 && evolutionSliderValue == 2) {
+    evolutionCase = 11;
+  } else if (monkeySliderValue == 3 && evolutionSliderValue == 3) {
+    evolutionCase = 12;
+  } else if (monkeySliderValue == 3 && evolutionSliderValue == 4) {
+    evolutionCase = 13;
+  } else {
+    evolutionCase = 0;
+  }
+
+}
+
+function evolutionSwitcher() {
+
+  switch (evolutionCase) {
     case 1:
-      handleCaseOne();  // Monkey Slider zero evolution case any
+      handleCaseOne(); // Monkey Slider zero evolution case any
       console.log(evolutionCase);
       break;
     case 2:
-      handleCaseTwo();  // One other monkey and no evolution
+      handleCaseTwo(); // One other monkey and no evolution
       console.log(evolutionCase);
       break;
     case 3:
@@ -142,162 +341,7 @@ function draw() {
 
     default:
       fill(255);
-      text("Evolution cases broke", width/2, height/2);
-  }
-
-}
-
-function drawBG(){
-    background(40);
-}
-
-// No monkeys & any evolution
-function handleCaseOne(){
-
-  image(monkeyYellow1, 100, 100, 150, 176);
-  r = 255;
-  g = 20;
-  b = 255;
-}
-
-// 1 other monkey and no(1) evolution
-function handleCaseTwo(){
-
-  image(monkeyYellow1, 100, 100, 150, 176);
-  image(monkeyBrown1, 100, 400, 150, 176);
-}
-
-//  1 other monkey and 2 evolution
-function handleCaseThree(){
-
-image(monkeyYellow1, 100, 100, 150, 176);
-image(monkeyBrown2, 100, 400, 150, 176);
-
-}
-
-// 1 other monkey and 3 evolution
-function handleCaseFour(){
-image(monkeyYellow2, 100, 100, 150, 176);
-image(monkeyBrown2, 100, 400, 150, 176);
-}
-
-// 1 other monkey and 4 evolution
-function handleCaseFive(){
-image(monkeyYellow2, 100, 100, 150, 176);
-image(monkeyBrown3, 100, 400, 150, 176);
-}
-
-// 2 other monkeys and 1 evolution
-function handleCaseSix(){
-  image(monkeyYellow1, 100, 100, 150, 176);
-
-  image(monkeyBrown1, 100, 400, 150, 176);
-  image(monkeyRed1, 300, 500, 150, 176);
-
-}
-
-// 2 other monkeys and 2 evolution
-function handleCaseSeven(){
-image(monkeyYellow2, 100, 100, 150, 176);
-
-image(monkeyBrown2, 100, 400, 150, 176);
-image(monkeyRed2, 300, 500, 150, 176);
-
-}
-
-// 2 other monkeys and 3 evolution
-function handleCaseEight(){
-  image(monkeyYellow3, 100, 100, 150, 176);
-
-  image(monkeyBrown2, 100, 400, 150, 176);
-  image(monkeyRed3, 300, 500, 150, 176);
-}
-
-// 2 other monkeys and 4 evolution
-function handleCaseNine(){
-  image(monkeyYellow4, 100, 100, 150, 176);
-
-  image(monkeyBrown3, 100, 400, 150, 176);
-  image(monkeyRed4, 300, 500, 150, 176);
-}
-
-// 3 other monkeys and 1 evolution
-function handleCaseTen(){
-  image(monkeyYellow1, 100, 100, 150, 176);
-
-  image(monkeyBrown1, 100, 400, 150, 176);
-  image(monkeyRed1, 300, 500, 150, 176);
-  image(monkeyPink1, 500, 200, 150, 176);
-
-}
-
-// 3 other monkeys and 2 evolution
-function handleCaseEleven(){
-  image(monkeyYellow2, 100, 100, 150, 176);
-
-  image(monkeyBrown2, 100, 400, 150, 176);
-  image(monkeyRed2, 300, 500, 150, 176);
-  image(monkeyPink2, 500, 200, 150, 176);
-
-}
-
-// 3 other monkeys and 3 evolution
-function handleCaseTwelve(){
-  image(monkeyYellow3, 100, 100, 150, 176);
-
-  image(monkeyBrown3, 100, 400, 150, 176);
-  image(monkeyRed3, 300, 500, 150, 176);
-  image(monkeyPink3, 500, 200, 150, 176);
-
-}
-
-// 3 other monkeys and 4 evolution
-function handleCaseThirteen(){
-  image(monkeyYellow4, 100, 100, 150, 176);
-
-  image(monkeyBrown4, 100, 400, 150, 176);
-  image(monkeyRed4, 300, 500, 150, 176);
-  image(monkeyPink4, 500, 200, 150, 176);
-
-}
-
-
-
-// Evolution Enumerations
-
-// Monkey Slider goes from 0, 3  which is 1,2,3 other monkeys
-// Evolution slider goes from 1,4 which is 1, 2, 3, 4
-
-function evolutionEnumerations(){
-
-  if(monkeySliderValue == 0 && (evolutionSliderValue == 1 || evolutionSliderValue == 2 || evolutionSliderValue == 3 || evolutionSliderValue == 4 || evolutionSliderValue == 5)){
-    evolutionCase = 1;
-  } else if(monkeySliderValue == 1 && evolutionSliderValue == 1){
-    evolutionCase = 2;
-  } else if(monkeySliderValue == 1 && evolutionSliderValue == 2){
-    evolutionCase = 3;
-  } else if(monkeySliderValue == 1 && evolutionSliderValue == 3){
-    evolutionCase = 4;
-  } else if(monkeySliderValue == 1 && evolutionSliderValue == 4){
-    evolutionCase = 5;
-  } else if(monkeySliderValue == 2 && evolutionSliderValue == 1){
-    evolutionCase = 6;
-  } else if(monkeySliderValue == 2 && evolutionSliderValue == 2){
-    evolutionCase = 7;
-  } else if(monkeySliderValue == 2 && evolutionSliderValue == 3){
-    evolutionCase = 8;
-  } else if(monkeySliderValue == 2 && evolutionSliderValue == 4){
-    evolutionCase = 9;
-  } else if(monkeySliderValue == 3 && evolutionSliderValue == 1){
-    evolutionCase = 10;
-  } else if(monkeySliderValue == 3 && evolutionSliderValue == 2){
-    evolutionCase = 11;
-  } else if(monkeySliderValue == 3 && evolutionSliderValue == 3){
-    evolutionCase = 12;
-  } else if(monkeySliderValue == 3 && evolutionSliderValue == 4){
-    evolutionCase = 13;
-  } else {
-    evolutionCase = 0;
+      text("Evolution cases broke", width / 2, height / 2);
   }
 
 }
