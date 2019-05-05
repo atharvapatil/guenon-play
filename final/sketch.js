@@ -7,8 +7,10 @@ document.ontouchmove = function(event){
   event.preventDefault();
 }
 
+let whichScreen;
+
 let sliderMonkeys, sliderEvolution;
-let button;
+let startButton, nextButton, restartButton;
 let monkeySliderValue, evolutionSliderValue;
 let img, img2, img3;
 
@@ -24,6 +26,7 @@ let jungleBackground;
 let imgBG;
 
 let sliderHeading, sliderHelpText;
+let interactiveHelpText;
 
 function preload() {
 
@@ -62,38 +65,135 @@ function setup() {
   sliderMonkeys = createSlider(0, 3, 0);
   sliderMonkeys.position(150, height - 100);
   sliderMonkeys.id('slider');
-  // sliderMonkeys.hide();
+  sliderMonkeys.hide();
 
   // Evolution slider
   sliderEvolution = createSlider(1, 4, 1);
   sliderEvolution.position(600, height - 100);
   sliderEvolution.id('sliderEvolution');
-  // sliderEvolution.hide();
+  sliderEvolution.hide();
 
-  sliderHeading = createDiv('Instructions', width - 600, 120);
+  sliderHeading = createDiv('Instruction:');
   sliderHeading.id('sliderHeading');
-  sliderHeading.position(width - 600, 100);
+  sliderHeading.position(width - 650, 100);
   sliderHeading.hide();
 
-  sliderHelpText = createDiv('move the species & time sliders to see how monkeys evolve different charecteristics over time.', width - 600, 120);
+  sliderHelpText = createDiv('Move the species & time sliders to see how monkeys evolve. Check out the text in the yellow box below to understand why.');
   sliderHelpText.id('sliderHelpText');
-  sliderHelpText.position(width - 600, 180);
+  sliderHelpText.position(width - 650, 180);
   sliderHelpText.hide();
 
-  button = createButton('Next');
-  button.id('button');
-  button.position(width - button.width - 100, height -button.height- 80 );
+  startButton = createButton('Start -->');
+  startButton.id('button');
+  startButton.position(width/2 - startButton.width/2 , height/2  + 56 );
+  startButton.hide();
+
+  nextButton = createButton('Next -->');
+  nextButton.id('button');
+  nextButton.position(width - nextButton.width - 110, height - nextButton.height- 80 );
+  nextButton.hide();
+
+  restartButton = createButton('Restart -->');
+  restartButton.id('button');
+  restartButton.position(width/2 - restartButton.width/2 , height/2 + 80);
+  restartButton.hide();
+
+  interactiveHelpText = createDiv('');
+  interactiveHelpText.id('interactiveHelpText');
+  interactiveHelpText.position(width - 650, height/2 - 80);
+  interactiveHelpText.hide();
+
+  whichScreen = 0;
 
 }
 
 function draw() {
-
-  drawBG();
-
   // Check for the
   monkeySliderValue = sliderMonkeys.value();
   evolutionSliderValue = sliderEvolution.value();
 
+  switchScreens();
+
+
+}
+
+
+function switchScreens(){
+  if(whichScreen == 0){
+
+    drawStartBg();
+
+    if (key == '1') {
+     whichScreen = 1;
+   }
+
+  } else if(whichScreen == 1){
+
+    drawMapBg();
+
+    drawSliderTitles();
+
+    // Check for the evolution Enumerations
+    evolutionEnumerations();
+    // Switch cases for different evolution cases
+    evolutionSwitcher();
+
+    interactInstructions();
+
+    if (key == '2') {
+     whichScreen = 2;
+   }
+
+  } else if(whichScreen == 2){
+
+      drawRestartBg();
+
+      if (key == '0') {
+       whichScreen = 0;
+     }
+  }
+}
+
+function drawStartBg(){
+    push();
+    background('black');
+    fill('white');
+    textSize(80);
+    textAlign(CENTER);
+    text('Welcome to Guenon interactive', width/2, height/2);
+    pop();
+
+    restartButton.hide();
+
+    startButton.show();
+}
+
+function drawRestartBg(){
+    push();
+    background('black');
+    fill('white');
+    textSize(80);
+    textAlign(CENTER);
+    text('Guenon interactive conclusions', width/2, height/2);
+    pop();
+
+    nextButton.hide();
+    sliderMonkeys.hide();
+    sliderEvolution.hide();
+    sliderHeading.hide();
+    sliderHelpText.hide();
+    interactiveHelpText.hide();
+
+    restartButton.show();
+}
+
+function drawMapBg() {
+  background('black');
+  jungleBackground = image(imgBG, 100, 50, 1050, 700);
+  // jungleBackground.hide();
+}
+
+function drawSliderTitles(){
   // Number of monkeys slider header
   push();
   textSize(30);
@@ -110,22 +210,13 @@ function draw() {
   text('Time: ' + evolutionSliderValue * 1000 + ' B.C', 600, height - 120);
   pop();
 
+  startButton.hide();
 
-  text('Evolution case' + evolutionCase, 30, 90);
+  sliderMonkeys.show();
+  sliderEvolution.show();
+  nextButton.show();
 
-  // Check for the evolution Enumerations
-  evolutionEnumerations();
-  // Switch cases for different evolution cases
-  evolutionSwitcher();
-
-  interactInstructions();
-
-}
-
-function drawBG() {
-  background('black');
-  jungleBackground = image(imgBG, 100, 50, 1100, 700);
-  // jungleBackground.hide();
+  // text('Evolution case' + evolutionCase, 30, 90);
 }
 
 function interactInstructions() {
@@ -139,6 +230,8 @@ function interactInstructions() {
 // No monkeys & any evolution
 function handleCaseOne() {
   image(monkeyYellow1, 450, 390, 150, 176);
+  interactiveHelpText.show();
+  interactiveHelpText.html('Move sliders to see changes & \'Hints\'');
 }
 
 // 1 other monkey and no(1) evolution
@@ -147,7 +240,9 @@ function handleCaseTwo() {
   image(monkeyYellow1, 450, 390, 150, 176);
   image(monkeyBrown1, 300, 150, 150, 176);
 
-  // sliderHelpText.html('With the arrival of a new monkey the original monkey will evolve new features. Jump into the future to see changes.')
+  interactiveHelpText.show();
+  interactiveHelpText.html('A new species is living with you. Move the \'Time\' slider to see how you would evolve over time.');
+
 }
 
 //  1 other monkey and 2 evolution
@@ -156,18 +251,29 @@ function handleCaseThree() {
   image(monkeyYellow1, 450, 390, 150, 176);
   image(monkeyBrown2, 300, 150, 150, 176);
 
+  interactiveHelpText.show();
+  interactiveHelpText.html('The Pink species evolved yellow eyelashes to differentiate itself.');
+
 }
 
 // 1 other monkey and 3 evolution
 function handleCaseFour() {
   image(monkeyYellow2, 450, 390, 150, 176);
   image(monkeyBrown2, 300, 150, 150, 176);
+
+  interactiveHelpText.show();
+  interactiveHelpText.html('The \'Yellow\' Monkey developed a brown facemask to differentiate itself more from the \'Pink\' Monkey.');
+
 }
 
 // 1 other monkey and 4 evolution
 function handleCaseFive() {
   image(monkeyYellow2, 450, 390, 150, 176);
   image(monkeyBrown3, 300, 150, 150, 176);
+
+  interactiveHelpText.show();
+  interactiveHelpText.html('The \'Pink\' Monkey developed a nose shape to differentiate itself more from the \'Yellow\' Monkey.');
+
 }
 
 // 2 other monkeys and 1 evolution
@@ -176,6 +282,9 @@ function handleCaseSix() {
 
   image(monkeyBrown1, 300, 150, 150, 176);
   image(monkeyRed1, 850, 220, 150, 176);
+
+  interactiveHelpText.show();
+  interactiveHelpText.html('A new species is living with you. Move the \'Time\' slider to see how you would evolve over time.');
 
 }
 
@@ -186,6 +295,9 @@ function handleCaseSeven() {
   image(monkeyBrown2, 300, 150, 150, 176);
   image(monkeyRed2, 850, 220, 150, 176);
 
+  interactiveHelpText.show();
+  interactiveHelpText.html('The \'Pink\' Monkey developed a nose shape to differentiate itself more from the \'Yellow\' Monkey.');
+
 }
 
 // 2 other monkeys and 3 evolution
@@ -194,6 +306,10 @@ function handleCaseEight() {
 
   image(monkeyBrown2, 300, 150, 150, 176);
   image(monkeyRed3, 850, 220, 150, 176);
+
+  interactiveHelpText.show();
+  interactiveHelpText.html('The \'Pink\' Monkey developed a nose shape to differentiate itself more from the \'Yellow\' Monkey.');
+
 }
 
 // 2 other monkeys and 4 evolution
@@ -202,6 +318,10 @@ function handleCaseNine() {
 
   image(monkeyBrown3, 300, 150, 150, 176);
   image(monkeyRed4, 850, 220, 150, 176);
+
+  interactiveHelpText.show();
+  interactiveHelpText.html('The \'Pink\' Monkey developed a nose shape to differentiate itself more from the \'Yellow\' Monkey.');
+
 }
 
 // 3 other monkeys and 1 evolution
@@ -211,6 +331,9 @@ function handleCaseTen() {
   image(monkeyBrown1, 300, 150, 150, 176);
   image(monkeyRed1, 850, 220, 150, 176);
   image(monkeyPink1, 800, 480, 150, 176);
+
+  interactiveHelpText.show();
+  interactiveHelpText.html('A new species is living with you. Move the \'Time\' slider to see how you would evolve over time.');
 
 }
 
@@ -222,6 +345,9 @@ function handleCaseEleven() {
   image(monkeyRed2, 850, 220, 150, 176);
   image(monkeyPink2,  800, 480, 150, 176);
 
+  interactiveHelpText.show();
+  interactiveHelpText.html('The \'Pink\' Monkey developed a nose shape to differentiate itself more from the \'Yellow\' Monkey.');
+
 }
 
 // 3 other monkeys and 3 evolution
@@ -232,6 +358,9 @@ function handleCaseTwelve() {
   image(monkeyRed3, 850, 220, 150, 176);
   image(monkeyPink3,  800, 480, 150, 176);
 
+  interactiveHelpText.show();
+  interactiveHelpText.html('The \'Pink\' Monkey developed a nose shape to differentiate itself more from the \'Yellow\' Monkey.');
+
 }
 
 // 3 other monkeys and 4 evolution
@@ -241,6 +370,9 @@ function handleCaseThirteen() {
   image(monkeyBrown4, 300, 150, 150, 176);
   image(monkeyRed4, 850, 220, 150, 176);
   image(monkeyPink4,  800, 480, 150, 176);
+
+  interactiveHelpText.show();
+  interactiveHelpText.html('The \'Pink\' Monkey developed a nose shape to differentiate itself more from the \'Yellow\' Monkey.');
 
 }
 
