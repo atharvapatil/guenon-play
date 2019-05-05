@@ -7,6 +7,31 @@ canvas {
   display: block;
 }
 
+#welcomeHeader{
+  font-family:  'Roboto Mono', monospace;
+  color: white;
+  font-size: 72px;
+  font-weight: 600;
+  display: block;
+  text-align: center;
+}
+
+
+#welcomeText{
+  font-family:  'Roboto Mono', monospace;
+  color: white;
+  font-size: 30px;
+  font-weight: 200;
+  display: block;
+  text-align: center;
+  line-height: 48px;
+  margin-left: 250px;
+  margin-right: 250px;
+  max-width: 100%;
+  opacity: 0.8;
+}
+
+
 #sliderHeading {
   color: white;
   font-family: 'Roboto Mono', monospace;
@@ -37,7 +62,7 @@ canvas {
   margin-right: 80px;
   line-height: 48px;
   opacity: 0.8;
-  margin-right: 80px;
+
 }
 
 #button {
@@ -53,7 +78,59 @@ canvas {
   font-size: 30px;
   font-family: 'Roboto Mono', sans-serif;
   font-weight: 400;
-  opacity: 0.6;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+#buttonStart {
+  width: 300px;
+  height: 88px;
+  border-radius: 44px;
+  background-color: Transparent;
+  border: solid;
+  border-color: #ffea00;
+  color:#ffea00;;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 36px;
+  font-family: 'Roboto Mono', sans-serif;
+  font-weight: 400;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+#buttonStart:active {
+  width: 300px;
+  height: 88px;
+  border-radius: 44px;
+  background-color: #ffea00;;
+  border: solid;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 36px;
+  font-family: 'Roboto Mono', sans-serif;
+  font-weight: 400;
+  opacity: 1;
+  cursor: pointer;
+}
+
+#button:active{
+  width: 250px;
+  height: 72px;
+  border-radius: 36px;
+  background-color: #34dea2;
+  border: solid;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+  font-family: 'Roboto Mono', sans-serif;
+  font-weight: 400;
+  opacity: 1;
   cursor: pointer;
 }
 

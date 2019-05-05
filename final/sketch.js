@@ -21,12 +21,15 @@ let monkeyBrown1, monkeyBrown2, monkeyBrown3, monkeyBrown4, monkeyBrown5;
 let monkeyYellow1, monkeyYellow2, monkeyYellow3, monkeyYellow4, monkeyYellow5;
 let monkeyRed1, monkeyRed2, monkeyRed3, monkeyRed4, monkeyRed5;
 let monkeyPink1, monkeyPink2, monkeyPink3, monkeyPink4, monkeyPink5;
+let imgCenter, imgRightOne, imgRightTwo, imgRightThree, imgLeftOne, imgLeftTwo, imgLeftThree;
 
 let jungleBackground;
 let imgBG;
 
 let sliderHeading, sliderHelpText;
 let interactiveHelpText;
+
+let welcomeHeader, welcomeText;
 
 function preload() {
 
@@ -56,6 +59,15 @@ function preload() {
   monkeyPink5 = loadImage('/images/monkeyPink5.svg');
 
   imgBG = loadImage('/images/background.png');
+
+  imgCenter = loadImage('/images/intro/imgCenter.png');
+  imgLeftOne = loadImage('/images/intro/imgLeftOne.png');
+  imgLeftTwo = loadImage('/images/intro/imgLeftTwo.png');
+  imgLeftThree = loadImage('/images/intro/imgLeftThree.png');
+  imgRightOne = loadImage('/images/intro/imgRightOne.png');
+  imgRightTwo = loadImage('/images/intro/imgRightTwo.png');
+  imgRightThree = loadImage('/images/intro/imgRightThree.png');
+
 }
 
 function setup() {
@@ -83,9 +95,9 @@ function setup() {
   sliderHelpText.position(width - 650, 180);
   sliderHelpText.hide();
 
-  startButton = createButton('Start -->');
-  startButton.id('button');
-  startButton.position(width/2 - startButton.width/2 , height/2  + 56 );
+  startButton = createButton('Begin -->');
+  startButton.id('buttonStart');
+  startButton.position(width/2 - startButton.width/2 , height - 200 );
   startButton.hide();
 
   nextButton = createButton('Next -->');
@@ -102,6 +114,16 @@ function setup() {
   interactiveHelpText.id('interactiveHelpText');
   interactiveHelpText.position(width - 650, height/2 - 80);
   interactiveHelpText.hide();
+
+  welcomeHeader = createDiv('Welcome to Guenon interactive');
+  welcomeHeader.id('welcomeHeader');
+  welcomeHeader.position(width/2 - 600 , height/2);
+  welcomeHeader.hide();
+
+  welcomeText = createDiv('These beautifully coloured guenon monkeys are a result of selective evolution between different monkey species. These colorful \'features\' help them avoid cross-breeding & live together. Click begin to see how it works.');
+  welcomeText.id('welcomeText');
+  welcomeText.position(width/2 - 900 , height/2 + 100);
+  welcomeText.hide();
 
   whichScreen = 0;
 
@@ -155,17 +177,29 @@ function switchScreens(){
 }
 
 function drawStartBg(){
-    push();
     background('black');
-    fill('white');
-    textSize(80);
-    textAlign(CENTER);
-    text('Welcome to Guenon interactive', width/2, height/2);
-    pop();
+    image(imgCenter, width/2- 175, 100, 350, 350);
+
+    image(imgRightOne, width/2 + 200, 125, 300, 300);
+    image(imgRightTwo, width/2 + 520, 150, 250, 250);
+    image(imgRightThree, width/2 + 780, 175, 200, 200);
+
+
+    image(imgLeftOne, width/2 - 500, 125, 300, 300);
+    image(imgLeftTwo, width/2 - 770, 150, 250, 250);
+    image(imgLeftThree, width/2 - 990, 175, 200, 200);
 
     restartButton.hide();
 
+    welcomeHeader.show();
+    welcomeText.show();
     startButton.show();
+    startButton.mouseClicked(function(){
+      whichScreen = 1;
+    });
+
+
+
 }
 
 function drawRestartBg(){
@@ -185,6 +219,9 @@ function drawRestartBg(){
     interactiveHelpText.hide();
 
     restartButton.show();
+    restartButton.mouseClicked(function(){
+      whichScreen = 0;
+    });
 }
 
 function drawMapBg() {
@@ -211,10 +248,15 @@ function drawSliderTitles(){
   pop();
 
   startButton.hide();
+  welcomeHeader.hide();
+  welcomeText.hide();
 
   sliderMonkeys.show();
   sliderEvolution.show();
   nextButton.show();
+  nextButton.mouseClicked(function(){
+    whichScreen = 2;
+  });
 
   // text('Evolution case' + evolutionCase, 30, 90);
 }
