@@ -7,28 +7,35 @@ document.ontouchmove = function(event){
   event.preventDefault();
 }
 
+// Determines the lifecycle of different DOM elements. 0 = Intro, 1 = interactive, 2 = Conclusion
 let whichScreen;
 
+// Sliders and button creation variables.
 let sliderMonkeys, sliderEvolution;
 let startButton, nextButton, restartButton;
+
+// Slider Values.
 let monkeySliderValue, evolutionSliderValue;
-let img, img2, img3;
+// let img, img2, img3;
 
 // Enumerations variable
 let evolutionCase;
 
+// All different monkey images variables in the interactive scenario.
 let monkeyBrown1, monkeyBrown2, monkeyBrown3, monkeyBrown4, monkeyBrown5;
 let monkeyYellow1, monkeyYellow2, monkeyYellow3, monkeyYellow4, monkeyYellow5;
 let monkeyRed1, monkeyRed2, monkeyRed3, monkeyRed4, monkeyRed5;
 let monkeyPink1, monkeyPink2, monkeyPink3, monkeyPink4, monkeyPink5;
+
+// Images on the intro screen.
 let imgCenter, imgRightOne, imgRightTwo, imgRightThree, imgLeftOne, imgLeftTwo, imgLeftThree;
 
+// Jungle background image in the interactive
 let jungleBackground;
-let imgBG;
 
+// Heading divs in different scenarios
 let sliderHeading, sliderHelpText;
 let interactiveHelpText;
-
 let welcomeHeader, welcomeText;
 
 function preload() {
@@ -58,7 +65,7 @@ function preload() {
   monkeyPink4 = loadImage('/images/monkeyPink4.svg');
   monkeyPink5 = loadImage('/images/monkeyPink5.svg');
 
-  imgBG = loadImage('/images/background.png');
+  jungleBackground = loadImage('/images/background.png');
 
   imgCenter = loadImage('/images/intro/imgCenter.png');
   imgLeftOne = loadImage('/images/intro/imgLeftOne.png');
@@ -85,61 +92,70 @@ function setup() {
   sliderEvolution.id('sliderEvolution');
   sliderEvolution.hide();
 
+  // Help text heading in interactive
   sliderHeading = createDiv('Instruction:');
   sliderHeading.id('sliderHeading');
   sliderHeading.position(width - 650, 100);
   sliderHeading.hide();
 
+  // sub heading text in the interactive
   sliderHelpText = createDiv('Move the species & time sliders to see how monkeys evolve. Check out the text in the yellow box below to understand why.');
   sliderHelpText.id('sliderHelpText');
   sliderHelpText.position(width - 650, 180);
   sliderHelpText.hide();
 
+  // Begin/start button on the first screen
   startButton = createButton('Begin -->');
   startButton.id('buttonStart');
   startButton.position(width/2 - startButton.width/2 , height - 200 );
   startButton.hide();
 
+  // Next button on the interactive slide.
   nextButton = createButton('Next -->');
   nextButton.id('button');
   nextButton.position(width - nextButton.width - 110, height - nextButton.height- 80 );
   nextButton.hide();
 
+  // Restart button on the conclusion slide
   restartButton = createButton('Restart -->');
   restartButton.id('button');
   restartButton.position(width/2 - restartButton.width/2 , height/2 + 80);
   restartButton.hide();
 
+  // Help text in the interactive which describes what is happening in the interacitve.
   interactiveHelpText = createDiv('');
   interactiveHelpText.id('interactiveHelpText');
   interactiveHelpText.position(width - 650, height/2 - 80);
   interactiveHelpText.hide();
 
+  // Welcome to Guenon interactive text.
   welcomeHeader = createDiv('Welcome to Guenon interactive');
   welcomeHeader.id('welcomeHeader');
   welcomeHeader.position(width/2 - 600 , height/2);
   welcomeHeader.hide();
 
+  // Sub heder for the welcome page
   welcomeText = createDiv('These beautifully coloured guenon monkeys are a result of selective evolution between different monkey species. These colorful \'features\' help them avoid cross-breeding & live together. Click begin to see how it works.');
   welcomeText.id('welcomeText');
   welcomeText.position(width/2 - 900 , height/2 + 100);
   welcomeText.hide();
 
+  // This variable controls which elements get shown or hidden on refreshing this starts with intro screen.
   whichScreen = 0;
 
 }
 
 function draw() {
-  // Check for the
+  // Continiously checking for the values of the monkey and evolution slider.
   monkeySliderValue = sliderMonkeys.value();
   evolutionSliderValue = sliderEvolution.value();
 
+  // Draws things based on the whichScreen variable
   switchScreens();
-
 
 }
 
-
+// Callback function to manage lifecycle of different elements
 function switchScreens(){
   if(whichScreen == 0){
 
@@ -176,6 +192,7 @@ function switchScreens(){
   }
 }
 
+// All intro screen elements go here
 function drawStartBg(){
     background('black');
     image(imgCenter, width/2- 175, 100, 350, 350);
@@ -198,10 +215,9 @@ function drawStartBg(){
       whichScreen = 1;
     });
 
-
-
 }
 
+// All restart screen elements go here
 function drawRestartBg(){
     push();
     background('black');
@@ -224,12 +240,13 @@ function drawRestartBg(){
     });
 }
 
+// Draws the map for the first screen
 function drawMapBg() {
   background('black');
-  jungleBackground = image(imgBG, 100, 50, 1050, 700);
-  // jungleBackground.hide();
+  image(jungleBackground, 100, 50, 1050, 700);
 }
 
+// These two functions manage lifecycle of the interactive screen
 function drawSliderTitles(){
   // Number of monkeys slider header
   push();
@@ -462,60 +479,59 @@ function evolutionSwitcher() {
   switch (evolutionCase) {
     case 1:
       handleCaseOne(); // Monkey Slider zero evolution case any
-      console.log(evolutionCase);
+      // console.log(evolutionCase);
       break;
     case 2:
       handleCaseTwo(); // One other monkey and no evolution
-      console.log(evolutionCase);
+      // console.log(evolutionCase);
       break;
     case 3:
       handleCaseThree();
-      console.log(evolutionCase);
+      // console.log(evolutionCase);
       break;
     case 4:
       handleCaseFour();
-      console.log(evolutionCase);
+      // console.log(evolutionCase);
       break;
     case 5:
       handleCaseFive();
-      console.log(evolutionCase);
+      // console.log(evolutionCase);
       break;
     case 6:
       handleCaseSix();
-      console.log(evolutionCase);
+      // console.log(evolutionCase);
       break;
     case 7:
       handleCaseSeven();
-      console.log(evolutionCase);
+      // console.log(evolutionCase);
       break;
     case 8:
       handleCaseEight();
-      console.log(evolutionCase);
+      // console.log(evolutionCase);
       break;
     case 9:
       handleCaseNine();
-      console.log(evolutionCase);
+      // console.log(evolutionCase);
       break;
     case 10:
       handleCaseTen();
-      console.log(evolutionCase);
+      // console.log(evolutionCase);
       break;
     case 11:
       handleCaseEleven();
-      console.log(evolutionCase);
+      // console.log(evolutionCase);
       break;
     case 12:
       handleCaseTwelve();
-      console.log(evolutionCase);
+      // console.log(evolutionCase);
       break;
     case 13:
       handleCaseThirteen();
-      console.log(evolutionCase);
+      // console.log(evolutionCase);
       break;
-
     default:
-      fill(255);
-      text("Evolution cases broke", width / 2, height / 2);
+      fill(255, 0, 0);
+      text("Welcome to reality Agent Smith", width / 2, height / 2);
   }
 
 }
