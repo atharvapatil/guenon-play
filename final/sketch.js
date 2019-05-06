@@ -29,14 +29,18 @@ let monkeyPink1, monkeyPink2, monkeyPink3, monkeyPink4, monkeyPink5;
 
 // Images on the intro screen.
 let imgCenter, imgRightOne, imgRightTwo, imgRightThree, imgLeftOne, imgLeftTwo, imgLeftThree;
+let monkeyStillOne, monkeyStillTwo, monkeyStillThree, monkeyStillFour;
 
 // Jungle background image in the interactive
 let jungleBackground;
+
+let dragBG;
 
 // Heading divs in different scenarios
 let sliderHeading, sliderHelpText;
 let interactiveHelpText;
 let welcomeHeader, welcomeText;
+let conclusionsHeader, conclusionText, conclusionTextTwo, monkeyFaceTime;
 
 function preload() {
 
@@ -66,6 +70,7 @@ function preload() {
   monkeyPink5 = loadImage('/images/monkeyPink5.svg');
 
   jungleBackground = loadImage('/images/background.png');
+  dragBG = loadImage('/images/dragBG.png');
 
   imgCenter = loadImage('/images/intro/imgCenter.png');
   imgLeftOne = loadImage('/images/intro/imgLeftOne.png');
@@ -75,6 +80,11 @@ function preload() {
   imgRightTwo = loadImage('/images/intro/imgRightTwo.png');
   imgRightThree = loadImage('/images/intro/imgRightThree.png');
 
+  monkeyStillOne = loadImage('/images/intro/monkeyStillOne.png');
+  monkeyStillTwo = loadImage('/images/intro/monkeyStillTwo.png');
+  monkeyStillThree = loadImage('/images/intro/monkeyStillThree.png');
+  monkeyStillFour = loadImage('/images/intro/monkeyStillFour.png');
+
 }
 
 function setup() {
@@ -82,26 +92,26 @@ function setup() {
 
   // Monkey slider
   sliderMonkeys = createSlider(0, 3, 0);
-  sliderMonkeys.position(150, height - 100);
+  sliderMonkeys.position(width - sliderMonkeys.width - 850, height - 100);
   sliderMonkeys.id('slider');
   sliderMonkeys.hide();
 
   // Evolution slider
   sliderEvolution = createSlider(1, 4, 1);
-  sliderEvolution.position(600, height - 100);
+  sliderEvolution.position(width - sliderEvolution.width - 450, height - 100);
   sliderEvolution.id('sliderEvolution');
   sliderEvolution.hide();
 
   // Help text heading in interactive
   sliderHeading = createDiv('Instruction:');
   sliderHeading.id('sliderHeading');
-  sliderHeading.position(width - 650, 100);
+  sliderHeading.position(80, 100);
   sliderHeading.hide();
 
   // sub heading text in the interactive
   sliderHelpText = createDiv('Move the species & time sliders to see how monkeys evolve. Check out the text in the yellow box below to understand why.');
   sliderHelpText.id('sliderHelpText');
-  sliderHelpText.position(width - 650, 180);
+  sliderHelpText.position(80, 180);
   sliderHelpText.hide();
 
   // Begin/start button on the first screen
@@ -112,24 +122,24 @@ function setup() {
 
   // Next button on the interactive slide.
   nextButton = createButton('Next -->');
-  nextButton.id('button');
-  nextButton.position(width - nextButton.width - 110, height - nextButton.height- 80 );
+  nextButton.id('buttonStart');
+  nextButton.position(80, height - nextButton.height- 60 );
   nextButton.hide();
 
   // Restart button on the conclusion slide
   restartButton = createButton('Restart -->');
-  restartButton.id('button');
-  restartButton.position(width/2 - restartButton.width/2 , height/2 + 80);
+  restartButton.id('buttonStart');
+  restartButton.position(80 , height - restartButton.height - 60);
   restartButton.hide();
 
   // Help text in the interactive which describes what is happening in the interacitve.
   interactiveHelpText = createDiv('');
   interactiveHelpText.id('interactiveHelpText');
-  interactiveHelpText.position(width - 650, height/2 - 80);
+  interactiveHelpText.position(80, height/2 - 80);
   interactiveHelpText.hide();
 
   // Welcome to Guenon interactive text.
-  welcomeHeader = createDiv('Welcome to Guenon interactive');
+  welcomeHeader = createDiv('The colorful world of Guenons');
   welcomeHeader.id('welcomeHeader');
   welcomeHeader.position(width/2 - 600 , height/2);
   welcomeHeader.hide();
@@ -139,6 +149,30 @@ function setup() {
   welcomeText.id('welcomeText');
   welcomeText.position(width/2 - 900 , height/2 + 100);
   welcomeText.hide();
+
+  // Conclusions screen header
+  conclusionsHeader = createDiv('What did we learn?');
+  conclusionsHeader.id('welcomeHeader');
+  conclusionsHeader.position( 80 , 40);
+  conclusionsHeader.hide();
+
+  // Sub heder for the conclusions page
+  conclusionText = createDiv('Different guenon monkey species evolve different features over time to <i>\"discriminate\"</i> themselves from others.');
+  conclusionText.id('conclusionText');
+  conclusionText.position(0 , 200);
+  conclusionText.hide();
+
+  // Sub heder for the conclusions page
+  conclusionTextTwo = createDiv('This evolutionary phenomenon is called <i>\"character displacement\"</i> & helps them to avoid mating with other guenon species.');
+  conclusionTextTwo.id('conclusionText');
+  conclusionTextTwo.position(0 , height/2);
+  conclusionTextTwo.hide();
+
+  // Sub heder for the conclusions page
+  monkeyFaceTime = createDiv('Checkout the Monkey Face Time card game to understand how they visually discriminate');
+  monkeyFaceTime.id('monkeyFaceTime');
+  monkeyFaceTime.position(0 , height - 280);
+  monkeyFaceTime.hide();
 
   // This variable controls which elements get shown or hidden on refreshing this starts with intro screen.
   whichScreen = 0;
@@ -165,7 +199,7 @@ function switchScreens(){
      whichScreen = 1;
    }
 
-  } else if(whichScreen == 1){
+ } else if(whichScreen == 1){
 
     drawMapBg();
 
@@ -206,7 +240,16 @@ function drawStartBg(){
     image(imgLeftTwo, width/2 - 770, 150, 250, 250);
     image(imgLeftThree, width/2 - 990, 175, 200, 200);
 
+    image(monkeyStillOne, 80, height - 100, 100, 100);
+    image(monkeyStillTwo, 380, height - 100, 120, 100);
+    image(monkeyStillThree, width - 580, height - 100, 120, 100);
+    image(monkeyStillFour, width - 280, height - 100, 120, 100);
+
     restartButton.hide();
+    conclusionsHeader.hide();
+    conclusionText.hide();
+    conclusionTextTwo.hide();
+    monkeyFaceTime.hide();
 
     welcomeHeader.show();
     welcomeText.show();
@@ -219,13 +262,8 @@ function drawStartBg(){
 
 // All restart screen elements go here
 function drawRestartBg(){
-    push();
+
     background('black');
-    fill('white');
-    textSize(80);
-    textAlign(CENTER);
-    text('Guenon interactive conclusions', width/2, height/2);
-    pop();
 
     nextButton.hide();
     sliderMonkeys.hide();
@@ -233,6 +271,13 @@ function drawRestartBg(){
     sliderHeading.hide();
     sliderHelpText.hide();
     interactiveHelpText.hide();
+
+    image(dragBG, width/2 + 150, 0, 800, 1000);
+
+    conclusionsHeader.show();
+    conclusionText.show();
+    conclusionTextTwo.show();
+    monkeyFaceTime.show();
 
     restartButton.show();
     restartButton.mouseClicked(function(){
@@ -243,7 +288,7 @@ function drawRestartBg(){
 // Draws the map for the first screen
 function drawMapBg() {
   background('black');
-  image(jungleBackground, 100, 50, 1050, 700);
+  image(jungleBackground, width/2 - 120, 50, 1050, 700);
 }
 
 // These two functions manage lifecycle of the interactive screen
@@ -253,7 +298,7 @@ function drawSliderTitles(){
   textSize(30);
   textFont('Noto Sans');
   fill('#00b0ff');
-  text('guenons species: ' + (monkeySliderValue + 1), 150, height - 120);
+  text('Guenons species: ' + (monkeySliderValue + 1), width - 980, height - 120);
   pop();
 
   /// Year of evolution in the timescale
@@ -261,7 +306,7 @@ function drawSliderTitles(){
   textSize(30);
   textFont('Noto Sans');
   fill('orange');
-  text('Time: ' + evolutionSliderValue * 1000 + ' B.C', 600, height - 120);
+  text('Time: ' + (evolutionSliderValue * 1000  - 1000)+ ' Years', width - 580, height - 120);
   pop();
 
   startButton.hide();
@@ -288,7 +333,7 @@ function interactInstructions() {
 
 // No monkeys & any evolution
 function handleCaseOne() {
-  image(monkeyYellow1, 450, 390, 150, 176);
+  image(monkeyYellow1, 1250, 390, 150, 176);
   interactiveHelpText.show();
   interactiveHelpText.html('Move sliders to see changes & \'Hints\'');
 }
@@ -296,8 +341,8 @@ function handleCaseOne() {
 // 1 other monkey and no(1) evolution
 function handleCaseTwo() {
 
-  image(monkeyYellow1, 450, 390, 150, 176);
-  image(monkeyBrown1, 300, 150, 150, 176);
+  image(monkeyYellow1, 1250, 390, 150, 176);
+  image(monkeyBrown1, 1100, 150, 150, 176);
 
   interactiveHelpText.show();
   interactiveHelpText.html('A new species is living with you. Move the \'Time\' slider to see how you would evolve over time.');
@@ -307,8 +352,8 @@ function handleCaseTwo() {
 //  1 other monkey and 2 evolution
 function handleCaseThree() {
 
-  image(monkeyYellow1, 450, 390, 150, 176);
-  image(monkeyBrown2, 300, 150, 150, 176);
+  image(monkeyYellow1, 1250, 390, 150, 176);
+  image(monkeyBrown2, 1100, 150, 150, 176);
 
   interactiveHelpText.show();
   interactiveHelpText.html('The Pink species evolved yellow eyelashes to differentiate itself.');
@@ -317,8 +362,8 @@ function handleCaseThree() {
 
 // 1 other monkey and 3 evolution
 function handleCaseFour() {
-  image(monkeyYellow2, 450, 390, 150, 176);
-  image(monkeyBrown2, 300, 150, 150, 176);
+  image(monkeyYellow2, 1250, 390, 150, 176);
+  image(monkeyBrown2, 1100, 150, 150, 176);
 
   interactiveHelpText.show();
   interactiveHelpText.html('The \'Yellow\' Monkey developed a brown facemask to differentiate itself more from the \'Pink\' Monkey.');
@@ -327,8 +372,8 @@ function handleCaseFour() {
 
 // 1 other monkey and 4 evolution
 function handleCaseFive() {
-  image(monkeyYellow2, 450, 390, 150, 176);
-  image(monkeyBrown3, 300, 150, 150, 176);
+  image(monkeyYellow2, 1250, 390, 150, 176);
+  image(monkeyBrown3, 1100, 150, 150, 176);
 
   interactiveHelpText.show();
   interactiveHelpText.html('The \'Pink\' Monkey developed a nose shape to differentiate itself more from the \'Yellow\' Monkey.');
@@ -337,10 +382,10 @@ function handleCaseFive() {
 
 // 2 other monkeys and 1 evolution
 function handleCaseSix() {
-  image(monkeyYellow1, 450, 390, 150, 176);
+  image(monkeyYellow1, 1250, 390, 150, 176);
 
-  image(monkeyBrown1, 300, 150, 150, 176);
-  image(monkeyRed1, 850, 220, 150, 176);
+  image(monkeyBrown1, 1100, 150, 150, 176);
+  image(monkeyRed1, 1550, 220, 150, 176);
 
   interactiveHelpText.show();
   interactiveHelpText.html('A new species is living with you. Move the \'Time\' slider to see how you would evolve over time.');
@@ -349,10 +394,10 @@ function handleCaseSix() {
 
 // 2 other monkeys and 2 evolution
 function handleCaseSeven() {
-  image(monkeyYellow2, 450, 390, 150, 176);
+  image(monkeyYellow2, 1250, 390, 150, 176);
 
-  image(monkeyBrown2, 300, 150, 150, 176);
-  image(monkeyRed2, 850, 220, 150, 176);
+  image(monkeyBrown2, 1100, 150, 150, 176);
+  image(monkeyRed2, 1550, 220, 150, 176);
 
   interactiveHelpText.show();
   interactiveHelpText.html('The \'Pink\' Monkey developed a nose shape to differentiate itself more from the \'Yellow\' Monkey.');
@@ -361,10 +406,10 @@ function handleCaseSeven() {
 
 // 2 other monkeys and 3 evolution
 function handleCaseEight() {
-  image(monkeyYellow3, 450, 390, 150, 176);
+  image(monkeyYellow3, 1250, 390, 150, 176);
 
-  image(monkeyBrown2, 300, 150, 150, 176);
-  image(monkeyRed3, 850, 220, 150, 176);
+  image(monkeyBrown2, 1100, 150, 150, 176);
+  image(monkeyRed3, 1550, 220, 150, 176);
 
   interactiveHelpText.show();
   interactiveHelpText.html('The \'Pink\' Monkey developed a nose shape to differentiate itself more from the \'Yellow\' Monkey.');
@@ -373,10 +418,10 @@ function handleCaseEight() {
 
 // 2 other monkeys and 4 evolution
 function handleCaseNine() {
-  image(monkeyYellow4, 450, 390, 150, 176);
+  image(monkeyYellow4, 1250, 390, 150, 176);
 
-  image(monkeyBrown3, 300, 150, 150, 176);
-  image(monkeyRed4, 850, 220, 150, 176);
+  image(monkeyBrown3, 1100, 150, 150, 176);
+  image(monkeyRed4, 1550, 220, 150, 176);
 
   interactiveHelpText.show();
   interactiveHelpText.html('The \'Pink\' Monkey developed a nose shape to differentiate itself more from the \'Yellow\' Monkey.');
@@ -385,11 +430,11 @@ function handleCaseNine() {
 
 // 3 other monkeys and 1 evolution
 function handleCaseTen() {
-  image(monkeyYellow1, 450, 390, 150, 176);
+  image(monkeyYellow1, 1250, 390, 150, 176);
 
-  image(monkeyBrown1, 300, 150, 150, 176);
-  image(monkeyRed1, 850, 220, 150, 176);
-  image(monkeyPink1, 800, 480, 150, 176);
+  image(monkeyBrown1, 1100, 150, 150, 176);
+  image(monkeyRed1, 1550, 220, 150, 176);
+  image(monkeyPink1, 1600, 480, 150, 176);
 
   interactiveHelpText.show();
   interactiveHelpText.html('A new species is living with you. Move the \'Time\' slider to see how you would evolve over time.');
@@ -398,11 +443,11 @@ function handleCaseTen() {
 
 // 3 other monkeys and 2 evolution
 function handleCaseEleven() {
-  image(monkeyYellow2, 450, 390, 150, 176);
+  image(monkeyYellow2, 1250, 390, 150, 176);
 
-  image(monkeyBrown2, 300, 150, 150, 176);
-  image(monkeyRed2, 850, 220, 150, 176);
-  image(monkeyPink2,  800, 480, 150, 176);
+  image(monkeyBrown2, 1100, 150, 150, 176);
+  image(monkeyRed2, 1550, 220, 150, 176);
+  image(monkeyPink2,  1600, 480, 150, 176);
 
   interactiveHelpText.show();
   interactiveHelpText.html('The \'Pink\' Monkey developed a nose shape to differentiate itself more from the \'Yellow\' Monkey.');
@@ -411,11 +456,11 @@ function handleCaseEleven() {
 
 // 3 other monkeys and 3 evolution
 function handleCaseTwelve() {
-  image(monkeyYellow3, 450, 390, 150, 176);
+  image(monkeyYellow3, 1250, 390, 150, 176);
 
-  image(monkeyBrown3, 300, 150, 150, 176);
-  image(monkeyRed3, 850, 220, 150, 176);
-  image(monkeyPink3,  800, 480, 150, 176);
+  image(monkeyBrown3, 1100, 150, 150, 176);
+  image(monkeyRed3, 1550, 220, 150, 176);
+  image(monkeyPink3,  1600, 480, 150, 176);
 
   interactiveHelpText.show();
   interactiveHelpText.html('The \'Pink\' Monkey developed a nose shape to differentiate itself more from the \'Yellow\' Monkey.');
@@ -424,11 +469,11 @@ function handleCaseTwelve() {
 
 // 3 other monkeys and 4 evolution
 function handleCaseThirteen() {
-  image(monkeyYellow4, 450, 390, 150, 176);
+  image(monkeyYellow4, 1250, 390, 150, 176);
 
-  image(monkeyBrown4, 300, 150, 150, 176);
-  image(monkeyRed4, 850, 220, 150, 176);
-  image(monkeyPink4,  800, 480, 150, 176);
+  image(monkeyBrown4, 1100, 150, 150, 176);
+  image(monkeyRed4, 1550, 220, 150, 176);
+  image(monkeyPink4, 1600, 480, 150, 176);
 
   interactiveHelpText.show();
   interactiveHelpText.html('The \'Pink\' Monkey developed a nose shape to differentiate itself more from the \'Yellow\' Monkey.');

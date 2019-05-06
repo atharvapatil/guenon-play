@@ -9,7 +9,10 @@ canvas {
 
 #welcomeHeader{
   font-family:  'Roboto Mono', monospace;
-  color: white;
+  /* color: white; */
+  background: -webkit-linear-gradient(#FFFFFF, #80deea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-size: 72px;
   font-weight: 600;
   display: block;
@@ -30,6 +33,33 @@ canvas {
   opacity: 0.8;
 }
 
+#conclusionText{
+  font-family:  'Roboto Mono', monospace;
+  color: white;
+  font-size: 32px;
+  font-weight: 200;
+  display: block;
+  text-align: left;
+  line-height: 56px;
+  margin-left: 80px;
+  /* margin-right: 250px; */
+  max-width: 50%;
+  opacity: 0.8;
+}
+
+#monkeyFaceTime{
+  font-family:  'Roboto Mono', monospace;
+  color: #ffea00;
+  font-size: 24px;
+  font-weight: 100;
+  display: block;
+  text-align: left;
+  line-height: 40px;
+  margin-left: 80px;
+  max-width: 50%;
+  opacity: 1;
+}
+
 
 #sliderHeading {
   color: white;
@@ -44,7 +74,7 @@ canvas {
   font-family: 'Roboto Mono', monospace;
   font-size: 24px;
   font-weight: 100;
-  margin-right: 80px;
+  margin-right: 60%;
   line-height: 42px;
   opacity: 0.7;
 }
@@ -52,15 +82,18 @@ canvas {
 #interactiveHelpText {
   border: solid;
   border-radius: 24px;
+  border-color: Transparent;
   padding: 40px 24px 40px 24px;
   text-align: center;
-  color: #fdd835;
+  background-color: #ffab00;
+  color: black;
   font-family: 'Roboto Mono', monospace;
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 200;
-  margin-right: 80px;
+  margin-right: 60%;
+  max-width: 50%;
   line-height: 48px;
-  opacity: 0.8;
+  opacity: 1;
 
 }
 
@@ -87,8 +120,8 @@ canvas {
   border-radius: 44px;
   background-color: Transparent;
   border: solid;
-  border-color: #ffea00;
-  color:#ffea00;;
+  border-color: #FFFFFF;
+  color:#FFFFFF;;
   text-align: center;
   text-decoration: none;
   display: inline-block;
