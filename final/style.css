@@ -47,17 +47,30 @@ canvas {
   opacity: 0.8;
 }
 
+#dragText{
+  font-family:  'Roboto Mono', monospace;
+  color: white;
+  font-size: 16px;
+  font-weight: 100;
+  display: block;
+  text-align: right;
+  line-height: 24px;
+  margin-right: 32px;
+  max-width: 20%;
+  opacity: 0.6;
+}
+
 #monkeyFaceTime{
   font-family:  'Roboto Mono', monospace;
   color: #ffea00;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 100;
   display: block;
   text-align: left;
   line-height: 40px;
   margin-left: 80px;
   max-width: 50%;
-  opacity: 1;
+  opacity: 0.9;
 }
 
 
@@ -72,11 +85,11 @@ canvas {
 #sliderHelpText {
   color: white;
   font-family: 'Roboto Mono', monospace;
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 100;
-  margin-right: 60%;
-  line-height: 42px;
-  opacity: 0.7;
+  margin-right: 58%;
+  line-height: 48px;
+  opacity: 0.8;
 }
 
 #interactiveHelpText {
@@ -170,10 +183,28 @@ canvas {
   -webkit-appearance: none;
   width: 350px;
   height: 24px;
-  border-radius: 8px;
+  border-radius: 12px;
   background: #00b0ff;
   outline: none;
   opacity: 1;
+  cursor: pointer;
+}
+
+#slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  cursor: pointer;
+}
+
+#slider::-moz-range-thumb {
+  width: 30px;
+  height: 30px;
+  background: #4CAF50;
+  border-radius: 50%;
   cursor: pointer;
 }
 
@@ -185,5 +216,23 @@ canvas {
   background: #ff9800;
   outline: none;
   opacity: 1;
+  cursor: pointer;
+}
+
+#sliderEvolution::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  cursor: pointer;
+}
+
+#sliderEvolution::-moz-range-thumb {
+  width: 30px;
+  height: 30px;
+  background: #4CAF50;
+  border-radius: 50%;
   cursor: pointer;
 }

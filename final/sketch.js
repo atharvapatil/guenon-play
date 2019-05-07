@@ -40,7 +40,16 @@ let dragBG;
 let sliderHeading, sliderHelpText;
 let interactiveHelpText;
 let welcomeHeader, welcomeText;
-let conclusionsHeader, conclusionText, conclusionTextTwo, monkeyFaceTime;
+let conclusionsHeader, conclusionText, conclusionTextTwo, monkeyFaceTime, dragText;
+
+// Drag and Drop stuff
+let x = 1250;
+let y = 200;
+let w = 90;
+let h = 106;
+let offsetX, offsetY;
+let dragging = false;
+let intersection = false;
 
 function preload() {
 
@@ -88,6 +97,7 @@ function preload() {
 }
 
 function setup() {
+
   createCanvas(windowWidth, windowHeight);
 
   // Monkey slider
@@ -103,15 +113,15 @@ function setup() {
   sliderEvolution.hide();
 
   // Help text heading in interactive
-  sliderHeading = createDiv('Instruction:');
-  sliderHeading.id('sliderHeading');
-  sliderHeading.position(80, 100);
+  sliderHeading = createDiv('Instructions');
+  sliderHeading.id('welcomeHeader');
+  sliderHeading.position(80, 40);
   sliderHeading.hide();
 
   // sub heading text in the interactive
   sliderHelpText = createDiv('Move the species & time sliders to see how monkeys evolve. Check out the text in the yellow box below to understand why.');
   sliderHelpText.id('sliderHelpText');
-  sliderHelpText.position(80, 180);
+  sliderHelpText.position(80, 150);
   sliderHelpText.hide();
 
   // Begin/start button on the first screen
@@ -165,7 +175,7 @@ function setup() {
   // Sub heder for the conclusions page
   conclusionTextTwo = createDiv('This evolutionary phenomenon is called <i>\"character displacement\"</i> & helps them to avoid mating with other guenon species.');
   conclusionTextTwo.id('conclusionText');
-  conclusionTextTwo.position(0 , height/2);
+  conclusionTextTwo.position(0 , height/2 - 100);
   conclusionTextTwo.hide();
 
   // Sub heder for the conclusions page
@@ -173,6 +183,12 @@ function setup() {
   monkeyFaceTime.id('monkeyFaceTime');
   monkeyFaceTime.position(0 , height - 280);
   monkeyFaceTime.hide();
+
+  // Sub heder for the conclusions page
+  dragText = createDiv('Drag the red monkey around to see how it changes in different environments.');
+  dragText.id('dragText');
+  dragText.position(width/2 + 560 , height/2);
+  dragText.hide();
 
   // This variable controls which elements get shown or hidden on refreshing this starts with intro screen.
   whichScreen = 0;
@@ -186,6 +202,10 @@ function draw() {
 
   // Draws things based on the whichScreen variable
   switchScreens();
+
+  // Check for rollover and drag events in the final screen
+  checkRollover()
+
 
 }
 
@@ -216,7 +236,7 @@ function switchScreens(){
      whichScreen = 2;
    }
 
-  } else if(whichScreen == 2){
+ } else if(whichScreen == 2){
 
       drawRestartBg();
 
@@ -228,6 +248,7 @@ function switchScreens(){
 
 // All intro screen elements go here
 function drawStartBg(){
+
     background('black');
     image(imgCenter, width/2- 175, 100, 350, 350);
 
@@ -250,6 +271,7 @@ function drawStartBg(){
     conclusionText.hide();
     conclusionTextTwo.hide();
     monkeyFaceTime.hide();
+    dragText.hide();
 
     welcomeHeader.show();
     welcomeText.show();
@@ -272,17 +294,97 @@ function drawRestartBg(){
     sliderHelpText.hide();
     interactiveHelpText.hide();
 
-    image(dragBG, width/2 + 150, 0, 800, 1000);
+    if(x >= 1440 && x <= 1880 && y >= 25 && y <= 465){ // cirlce 1
+      // Drag Background
+      image(dragBG, width/2 + 150, 0, 800, 1000);
+
+      // In cirlce 1
+      image(monkeyYellow2, 1720, 160, 90, 106);
+      image(monkeyPink1, 1610, 300, 90, 106);
+      image(monkeyBrown1, 1560, 90, 90, 106);
+
+      // In circle 2
+      image(monkeyYellow1, 1280, 680, 90, 106);
+      image(monkeyBrown3, 1210, 540, 90, 106);
+
+      // In circle 3
+      image(monkeyPink1, 1700, 780, 90, 106);
+
+      // Dragged around monkey
+      image(monkeyRed1, x, y, w, h);
+    } else if(x >= 1145 && x <= 1525 && y >= 450 && y <= 835){ // cirlce 2
+      // Drag Background
+      image(dragBG, width/2 + 150, 0, 800, 1000);
+
+      // In cirlce 1
+      image(monkeyYellow1, 1720, 160, 90, 106);
+      image(monkeyPink2, 1610, 300, 90, 106);
+      image(monkeyBrown3, 1560, 90, 90, 106);
+
+      // In circle 2
+      image(monkeyYellow4, 1280, 680, 90, 106);
+      image(monkeyBrown4, 1210, 540, 90, 106);
+
+      // In circle 3
+      image(monkeyPink1, 1700, 780, 90, 106);
+
+      // Dragged around monkey
+      image(monkeyRed2, x, y, w, h);
+    } else if(x >= 1145 && x <= 1525 && y >= 450 && y <= 835){ // cirlce 3
+      // Drag Background
+      image(dragBG, width/2 + 150, 0, 800, 1000);
+
+      // In cirlce 1
+      image(monkeyYellow1, 1720, 160, 90, 106);
+      image(monkeyPink2, 1610, 300, 90, 106);
+      image(monkeyBrown3, 1560, 90, 90, 106);
+
+      // In circle 2
+      image(monkeyYellow1, 1280, 680, 90, 106);
+      image(monkeyBrown3, 1210, 540, 90, 106);
+
+      // In circle 3
+      image(monkeyPink2, 1700, 780, 90, 106);
+
+      // Dragged around monkey
+      image(monkeyRed3, x, y, w, h);
+    } else { // everywhere else, like literally everywhere else
+      // Drag Background
+      image(dragBG, width/2 + 150, 0, 800, 1000);
+
+      // In cirlce 1
+      image(monkeyYellow1, 1720, 160, 90, 106);
+      image(monkeyPink2, 1610, 300, 90, 106);
+      image(monkeyBrown3, 1560, 90, 90, 106);
+
+      // In circle 2
+      image(monkeyYellow1, 1280, 680, 90, 106);
+      image(monkeyBrown3, 1210, 540, 90, 106);
+
+      // In circle 3
+      image(monkeyPink1, 1700, 780, 90, 106);
+
+      // Dragged around monkey
+      image(monkeyRed4, x, y, w, h);
+    }
+
+    fill(255, 90);
+    textAlign(CENTER);
+    text('move me', x + 45, y + 125);
 
     conclusionsHeader.show();
     conclusionText.show();
     conclusionTextTwo.show();
     monkeyFaceTime.show();
+    dragText.show();
 
     restartButton.show();
     restartButton.mouseClicked(function(){
+      // monkeySliderValue.reset();
+      // evolutionSliderValue.reset();
       whichScreen = 0;
     });
+
 }
 
 // Draws the map for the first screen
@@ -296,6 +398,7 @@ function drawSliderTitles(){
   // Number of monkeys slider header
   push();
   textSize(30);
+  textAlign(LEFT);
   textFont('Noto Sans');
   fill('#00b0ff');
   text('Guenons species: ' + (monkeySliderValue + 1), width - 980, height - 120);
@@ -304,6 +407,7 @@ function drawSliderTitles(){
   /// Year of evolution in the timescale
   push();
   textSize(30);
+  textAlign(LEFT);
   textFont('Noto Sans');
   fill('orange');
   text('Time: ' + (evolutionSliderValue * 1000  - 1000)+ ' Years', width - 580, height - 120);
@@ -579,4 +683,34 @@ function evolutionSwitcher() {
       text("Welcome to reality Agent Smith", width / 2, height / 2);
   }
 
+}
+
+function mousePressed() {
+  // Did I click on the rectangle?
+  if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h) {
+    dragging = true;
+    // If so, keep track of relative location of click to corner of rectangle
+    offsetX = x-mouseX;
+    offsetY = y-mouseY;
+  }
+}
+
+function mouseReleased() {
+  // Quit dragging
+  dragging = false;
+
+}
+
+function checkRollover(){
+  if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h) {
+    intersection = true;
+  }
+  else {
+    intersection = false;
+  }
+
+  if (dragging) {
+    x = mouseX + offsetX;
+    y = mouseY + offsetY;
+  }
 }
