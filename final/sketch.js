@@ -26,6 +26,7 @@ let monkeyBrown1, monkeyBrown2, monkeyBrown3, monkeyBrown4, monkeyBrown5;
 let monkeyYellow1, monkeyYellow2, monkeyYellow3, monkeyYellow4, monkeyYellow5;
 let monkeyRed1, monkeyRed2, monkeyRed3, monkeyRed4, monkeyRed5;
 let monkeyPink1, monkeyPink2, monkeyPink3, monkeyPink4, monkeyPink5;
+let monkeyGrey1, monkeyGrey2, monkeyGrey3, monkeyGrey4, monkeyGrey5;
 
 // Images on the intro screen.
 let imgCenter, imgRightOne, imgRightTwo, imgRightThree, imgLeftOne, imgLeftTwo, imgLeftThree;
@@ -50,6 +51,7 @@ let h = 106;
 let offsetX, offsetY;
 let dragging = false;
 let intersection = false;
+
 
 function preload() {
 
@@ -77,6 +79,12 @@ function preload() {
   monkeyPink3 = loadImage('/images/monkeyPink3.svg');
   monkeyPink4 = loadImage('/images/monkeyPink4.svg');
   monkeyPink5 = loadImage('/images/monkeyPink5.svg');
+
+  monkeyGrey1 = loadImage('/images/monkeyGrey1.svg');
+  monkeyGrey2 = loadImage('/images/monkeyGrey2.svg');
+  monkeyGrey3 = loadImage('/images/monkeyGrey3.svg');
+  monkeyGrey4 = loadImage('/images/monkeyGrey4.svg');
+  monkeyGrey5 = loadImage('/images/monkeyGrey5.svg');
 
   jungleBackground = loadImage('/images/background.png');
   dragBG = loadImage('/images/dragBG.png');
@@ -204,8 +212,7 @@ function draw() {
   switchScreens();
 
   // Check for rollover and drag events in the final screen
-  checkRollover()
-
+  checkRollover();
 
 }
 
@@ -266,6 +273,8 @@ function drawStartBg(){
     image(monkeyStillThree, width - 580, height - 100, 120, 100);
     image(monkeyStillFour, width - 280, height - 100, 120, 100);
 
+
+
     restartButton.hide();
     conclusionsHeader.hide();
     conclusionText.hide();
@@ -279,6 +288,7 @@ function drawStartBg(){
     startButton.mouseClicked(function(){
       whichScreen = 1;
     });
+
 
 }
 
