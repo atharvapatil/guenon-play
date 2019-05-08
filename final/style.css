@@ -36,7 +36,22 @@ canvas {
 #conclusionText{
   font-family:  'Roboto Mono', monospace;
   color: white;
-  font-size: 32px;
+  font-size: 40px;
+  font-weight: 200;
+  display: block;
+  text-align: left;
+  line-height: 64px;
+  margin-left: 80px;
+  /* margin-right: 200px; */
+  /* margin-right: 250px; */
+  max-width: 50%;
+  opacity: 0.9;
+}
+
+#dragText{
+  font-family:  'Roboto Mono', monospace;
+  color: white;
+  font-size: 40px;
   font-weight: 200;
   display: block;
   text-align: left;
@@ -47,27 +62,14 @@ canvas {
   opacity: 0.8;
 }
 
-#dragText{
-  font-family:  'Roboto Mono', monospace;
-  color: white;
-  font-size: 16px;
-  font-weight: 100;
-  display: block;
-  text-align: right;
-  line-height: 24px;
-  margin-right: 32px;
-  max-width: 20%;
-  opacity: 0.6;
-}
-
 #monkeyFaceTime{
   font-family:  'Roboto Mono', monospace;
   color: #ffea00;
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 100;
   display: block;
   text-align: left;
-  line-height: 40px;
+  line-height: 48px;
   margin-left: 80px;
   max-width: 50%;
   opacity: 0.9;
@@ -90,6 +92,16 @@ canvas {
   margin-right: 58%;
   line-height: 48px;
   opacity: 0.8;
+}
+
+#sliderHelpHead {
+  color: white;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 44px;
+  font-weight: 100;
+  margin-right: 58%;
+  line-height: 60px;
+  opacity: 1;
 }
 
 #interactiveHelpText {
