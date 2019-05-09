@@ -44,7 +44,7 @@ let sliderHeading, sliderHelpText;
 let interactiveHelpText;
 let welcomeHeader, welcomeText;
 let conclusionsHeader, conclusionText, conclusionTextTwo, monkeyFaceTime, dragText;
-
+let noahsChoice;
 // Drag and Drop stuff
 let x = 1250;
 let y = 200;
@@ -126,15 +126,15 @@ function setup() {
   sliderEvolution.hide();
 
   // Help text heading in interactive
-  sliderHeading = createDiv('Conclusions');
-  sliderHeading.id('welcomeHeader');
+  sliderHeading = createDiv('Final thoughts');
+  sliderHeading.id('happyMonkey');
   sliderHeading.position(80, 40);
   sliderHeading.hide();
 
   // sub heading text in the interactive
-  sliderHelpText = createDiv('Play with the species slider & the time slider to see how monkeys who live together change features over long periods of time.');
+  sliderHelpText = createDiv('Play with the species slider & time slider to see how guenon species who live together change their appearance over many generations.');
   sliderHelpText.id('sliderHelpHead');
-  sliderHelpText.position(80, 40);
+  sliderHelpText.position(80, 290);
   sliderHelpText.hide();
 
   // Begin/start button on the first screen
@@ -164,47 +164,52 @@ function setup() {
   // Help text in the interactive which describes what is happening in the interacitve.
   interactiveHelpText = createDiv('');
   interactiveHelpText.id('interactiveHelpText');
-  interactiveHelpText.position(80, height/2 - 80);
+  interactiveHelpText.position(80, height/2 + 30);
   interactiveHelpText.hide();
 
   // Welcome to Guenon interactive text.
-  welcomeHeader = createDiv('The colorful world of Guenons');
+  welcomeHeader = createDiv('Guenons : not  just another pretty face');
   welcomeHeader.id('welcomeHeader');
-  welcomeHeader.position(width/2 - 600 , height/2);
+  welcomeHeader.position(width/2 - 700 , height/2 + 40);
   welcomeHeader.hide();
 
   // Sub heder for the welcome page
-  welcomeText = createDiv('These beautifully colored old world monkeys are a result of evolution between different monkey species. Their colorful facial patterns help them steer clear of cross-breeding & live together.');
-  welcomeText.id('welcomeText');
-  welcomeText.position(width/2 - 900 , height/2 + 100);
+  welcomeText = createDiv('Guenons species often live in close knit communities and their colorful facial patterns help them steer clear of cross breeding.');
+  welcomeText.id('sliderHelpHead');
+  welcomeText.position(80 , 40);
   welcomeText.hide();
 
   // Conclusions screen header
-  conclusionsHeader = createDiv('Free play');
-  conclusionsHeader.id('welcomeHeader');
+  conclusionsHeader = createDiv('Moving in & out of range');
+  conclusionsHeader.id('conclusionsHeader');
   conclusionsHeader.position( 80 , height/2);
   conclusionsHeader.hide();
 
   // Sub heder for the conclusions page
-  conclusionText = createDiv('Different guenon monkey species evolve different features over time to "discriminate" themselves from others.');
+  conclusionText = createDiv('Guenons are famous for their complex, extraordinarily diverse facial patterns. These facial patterns are a form of visual signaling essential to each species’ reproductive health and genetic integrity.');
   conclusionText.id('conclusionText');
-  conclusionText.position(0 , 200);
+  conclusionText.position(0 , 180);
   conclusionText.hide();
 
   // Sub heder for the conclusions page
-  conclusionTextTwo = createDiv('This evolutionary phenomenon is called "character displacement" & helps them to avoid mating with other guenon species.');
+  conclusionTextTwo = createDiv('Unlike guenon species that live in isolation, species that live together in sympatry evolve increasingly diverse facial patterns over very long periods of time, an evolutionary outcome known as character displacement. Primatologists, believe guenon facial patterns play a large part in preventing crossbreeding.');
   conclusionTextTwo.id('conclusionText');
-  conclusionTextTwo.position(0 , height/2 - 70);
+  conclusionTextTwo.position(0 , height/2 - 140);
   conclusionTextTwo.hide();
 
+  noahsChoice = createDiv('This interactive is based on research conducted by Dr. James Higham and his fellow primatologists in the Primate Reproductive Ecology and Evolution Group at NYU’s Center for the Study of Human Origins (CSHO).');
+  noahsChoice.id('conclusionText');
+  noahsChoice.position(0 , height/2 + 140);
+  noahsChoice.hide();
+
   // Sub heder for the conclusions page
-  monkeyFaceTime = createDiv('Checkout the Monkey Face Time card game to understand how they visually discriminate');
+  monkeyFaceTime = createDiv('To help foster a mental model of these concepts through group interaction, check out Monkey Face Time, a cooperative card game about clever monkeys with colorful face.');
   monkeyFaceTime.id('monkeyFaceTime');
-  monkeyFaceTime.position(0 , height - 280);
+  monkeyFaceTime.position(590 , height - 150);
   monkeyFaceTime.hide();
 
   // Sub heder for the conclusions page
-  dragText = createDiv('Drag the red monkey around to see how it changes in different environments.');
+  dragText = createDiv('Migrate the red monkey species between the three ranges to see different sympatric contexts impact character displacement.');
   dragText.id('dragText');
   dragText.position(0 , height/2 + 100);
   dragText.hide();
@@ -280,7 +285,7 @@ function drawConclusions(){
   dragText.hide();
 
 
-
+  noahsChoice.show();
   conclusionText.show();
   conclusionTextTwo.show();
   restartButton.hide();
@@ -288,7 +293,7 @@ function drawConclusions(){
   sliderHeading.show();
   monkeyFaceTime.show();
   finalButton.show();
-  image(finalMonkey, width/2 + 210, 0, 750, 1034);
+  image(finalMonkey, width/2 + 540, 210 , 375, 520);
   finalButton.mouseClicked(function(){
     // monkeySliderValue.reset();
     // evolutionSliderValue.reset();
@@ -317,7 +322,7 @@ function drawStartBg(){
     image(monkeyStillThree, width - 580 + 7*sin(frameCount), height - 100, 120, 100);
     image(monkeyStillFour, width - 280 - 7*sin(frameCount), height - 100, 120, 100);
 
-
+    noahsChoice.hide();
     sliderHeading.hide();
     finalButton.hide();
     conclusionsHeader.hide();
@@ -326,8 +331,9 @@ function drawStartBg(){
     monkeyFaceTime.hide();
     dragText.hide();
 
+
     welcomeHeader.show();
-    welcomeText.show();
+    welcomeText.hide();
     startButton.show();
     startButton.mouseClicked(function(){
       whichScreen = 1;
@@ -433,6 +439,7 @@ function drawRestartBg(){
     // conclusionTextTwo.show();
     // monkeyFaceTime.show();
     dragText.show();
+    welcomeText.hide();
 
     restartButton.show();
     restartButton.mouseClicked(function(){
@@ -471,8 +478,9 @@ function drawSliderTitles(){
 
   startButton.hide();
   welcomeHeader.hide();
-  welcomeText.hide();
 
+
+  welcomeText.show();
   sliderMonkeys.show();
   sliderEvolution.show();
   sliderHelpText.show();

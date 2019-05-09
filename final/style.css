@@ -8,7 +8,7 @@ canvas {
 }
 
 #welcomeHeader{
-  font-family:  'Roboto Mono', monospace;
+  font-family:  'Happy Monkey', monospace;
   /* color: white; */
   background: -webkit-linear-gradient(#FFFFFF, #80deea);
   -webkit-background-clip: text;
@@ -19,8 +19,32 @@ canvas {
   text-align: center;
 }
 
+#happyMonkey{
+  font-family:  'Happy Monkey', monospace;
+  /* color: white; */
+  background: -webkit-linear-gradient(#FFFFFF, #80deea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 72px;
+  font-weight: 600;
+  display: block;
+  text-align: center;
+}
+
+#conclusionsHeader{
+  font-family:  'Happy Monkey', monospace;
+  /* color: white; */
+  background: -webkit-linear-gradient(#FFFFFF, #80deea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 64px;
+  font-weight: 600;
+  display: block;
+  text-align: center;
+}
+
 #welcomeText{
-  font-family:  'Roboto Mono', monospace;
+  font-family:  'Raleway', monospace;
   color: white;
   font-size: 30px;
   font-weight: 200;
@@ -34,9 +58,9 @@ canvas {
 }
 
 #conclusionText{
-  font-family:  'Roboto Mono', monospace;
+  font-family:  'Raleway', monospace;
   color: white;
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 200;
   display: block;
   text-align: left;
@@ -44,14 +68,14 @@ canvas {
   margin-left: 80px;
   /* margin-right: 200px; */
   /* margin-right: 250px; */
-  max-width: 50%;
+  max-width: 70%;
   opacity: 0.9;
 }
 
 #dragText{
-  font-family:  'Roboto Mono', monospace;
+  font-family:  'Raleway', monospace;
   color: white;
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 200;
   display: block;
   text-align: left;
@@ -59,26 +83,26 @@ canvas {
   margin-left: 80px;
   /* margin-right: 250px; */
   max-width: 50%;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 #monkeyFaceTime{
-  font-family:  'Roboto Mono', monospace;
+  font-family:  'Raleway', monospace;
   color: #ffea00;
   font-size: 32px;
   font-weight: 100;
   display: block;
   text-align: left;
   line-height: 48px;
-  margin-left: 80px;
-  max-width: 50%;
+  margin-right: 40px;
+  max-width: 80%;
   opacity: 0.9;
 }
 
 
 #sliderHeading {
   color: white;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Raleway', monospace;
   font-size: 40px;
   font-weight: 600;
   opacity: 0.7;
@@ -86,7 +110,7 @@ canvas {
 
 #sliderHelpText {
   color: white;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Raleway', monospace;
   font-size: 32px;
   font-weight: 100;
   margin-right: 58%;
@@ -96,24 +120,24 @@ canvas {
 
 #sliderHelpHead {
   color: white;
-  font-family: 'Roboto Mono', monospace;
-  font-size: 44px;
+  font-family: 'Raleway', monospace;
+  font-size: 36px;
   font-weight: 100;
   margin-right: 58%;
-  line-height: 60px;
-  opacity: 1;
+  line-height: 56px;
+  opacity: 0.9;
 }
 
 #interactiveHelpText {
   border: solid;
   border-radius: 24px;
   border-color: Transparent;
-  padding: 40px 24px 40px 24px;
+  padding: 20px 24px 20px 24px;
   text-align: center;
   background-color: #ffab00;
   color: black;
-  font-family: 'Roboto Mono', monospace;
-  font-size: 36px;
+  font-family: 'Raleway', monospace;
+  font-size: 32px;
   font-weight: 200;
   margin-right: 60%;
   max-width: 50%;
@@ -133,7 +157,7 @@ canvas {
   text-decoration: none;
   display: inline-block;
   font-size: 30px;
-  font-family: 'Roboto Mono', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 400;
   opacity: 0.8;
   cursor: pointer;
@@ -151,7 +175,7 @@ canvas {
   text-decoration: none;
   display: inline-block;
   font-size: 36px;
-  font-family: 'Roboto Mono', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 400;
   opacity: 0.8;
   cursor: pointer;
@@ -168,7 +192,7 @@ canvas {
   text-decoration: none;
   display: inline-block;
   font-size: 36px;
-  font-family: 'Roboto Mono', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 400;
   opacity: 1;
   cursor: pointer;
@@ -185,7 +209,7 @@ canvas {
   text-decoration: none;
   display: inline-block;
   font-size: 30px;
-  font-family: 'Roboto Mono', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 400;
   opacity: 1;
   cursor: pointer;
