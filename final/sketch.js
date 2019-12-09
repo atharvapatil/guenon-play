@@ -57,54 +57,54 @@ let intersection = false;
 
 function preload() {
 
-  monkeyRed1 = loadImage('/images/monkeyRed1.svg');
-  monkeyRed2 = loadImage('/images/monkeyRed2.svg');
-  monkeyRed3 = loadImage('/images/monkeyRed3.svg');
-  monkeyRed4 = loadImage('/images/monkeyRed4.svg');
-  monkeyRed5 = loadImage('/images/monkeyRed5.svg');
+  monkeyRed1 = loadImage('./images/monkeyRed1.svg');
+  monkeyRed2 = loadImage('./images/monkeyRed2.svg');
+  monkeyRed3 = loadImage('./images/monkeyRed3.svg');
+  monkeyRed4 = loadImage('./images/monkeyRed4.svg');
+  monkeyRed5 = loadImage('./images/monkeyRed5.svg');
 
   //Base Monkey
-  monkeyYellow1 = loadImage('/images/monkeyYellow1.svg');
-  monkeyYellow2 = loadImage('/images/monkeyYellow2.svg');
-  monkeyYellow3 = loadImage('/images/monkeyYellow3.svg');
-  monkeyYellow4 = loadImage('/images/monkeyYellow4.svg');
-  monkeyYellow5 = loadImage('/images/monkeyYellow5.svg');
+  monkeyYellow1 = loadImage('./images/monkeyYellow1.svg');
+  monkeyYellow2 = loadImage('./images/monkeyYellow2.svg');
+  monkeyYellow3 = loadImage('./images/monkeyYellow3.svg');
+  monkeyYellow4 = loadImage('./images/monkeyYellow4.svg');
+  monkeyYellow5 = loadImage('./images/monkeyYellow5.svg');
 
-  monkeyBrown1 = loadImage('/images/monkeyBrown1.svg');
-  monkeyBrown2 = loadImage('/images/monkeyBrown2.svg');
-  monkeyBrown3 = loadImage('/images/monkeyBrown3.svg');
-  monkeyBrown4 = loadImage('/images/monkeyBrown4.svg');
-  monkeyBrown5 = loadImage('/images/monkeyBrown5.svg');
+  monkeyBrown1 = loadImage('./images/monkeyBrown1.svg');
+  monkeyBrown2 = loadImage('./images/monkeyBrown2.svg');
+  monkeyBrown3 = loadImage('./images/monkeyBrown3.svg');
+  monkeyBrown4 = loadImage('./images/monkeyBrown4.svg');
+  monkeyBrown5 = loadImage('./images/monkeyBrown5.svg');
 
-  monkeyPink1 = loadImage('/images/monkeyPink1.svg');
-  monkeyPink2 = loadImage('/images/monkeyPink2.svg');
-  monkeyPink3 = loadImage('/images/monkeyPink3.svg');
-  monkeyPink4 = loadImage('/images/monkeyPink4.svg');
-  monkeyPink5 = loadImage('/images/monkeyPink5.svg');
+  monkeyPink1 = loadImage('./images/monkeyPink1.svg');
+  monkeyPink2 = loadImage('./images/monkeyPink2.svg');
+  monkeyPink3 = loadImage('./images/monkeyPink3.svg');
+  monkeyPink4 = loadImage('./images/monkeyPink4.svg');
+  monkeyPink5 = loadImage('./images/monkeyPink5.svg');
 
-  monkeyGrey1 = loadImage('/images/monkeyGrey1.svg');
-  monkeyGrey2 = loadImage('/images/monkeyGrey2.svg');
-  monkeyGrey3 = loadImage('/images/monkeyGrey3.svg');
-  monkeyGrey4 = loadImage('/images/monkeyGrey4.svg');
-  monkeyGrey5 = loadImage('/images/monkeyGrey5.svg');
+  monkeyGrey1 = loadImage('./images/monkeyGrey1.svg');
+  monkeyGrey2 = loadImage('./images/monkeyGrey2.svg');
+  monkeyGrey3 = loadImage('./images/monkeyGrey3.svg');
+  monkeyGrey4 = loadImage('./images/monkeyGrey4.svg');
+  monkeyGrey5 = loadImage('./images/monkeyGrey5.svg');
 
-  jungleBackground = loadImage('/images/background.png');
-  dragBG = loadImage('/images/dragBG.png');
-  finalMonkey = loadImage('/images/finalMonkey.jpg');
-  swingMonkey = loadImage('/images/swingMonkey.png');
+  jungleBackground = loadImage('./images/background.png');
+  dragBG = loadImage('./images/dragBG.png');
+  finalMonkey = loadImage('./images/finalMonkey.jpg');
+  swingMonkey = loadImage('./images/swingMonkey.png');
 
-  imgCenter = loadImage('/images/intro/imgCenter.png');
-  imgLeftOne = loadImage('/images/intro/imgLeftOne.png');
-  imgLeftTwo = loadImage('/images/intro/imgLeftTwo.png');
-  imgLeftThree = loadImage('/images/intro/imgLeftThree.png');
-  imgRightOne = loadImage('/images/intro/imgRightOne.png');
-  imgRightTwo = loadImage('/images/intro/imgRightTwo.png');
-  imgRightThree = loadImage('/images/intro/imgRightThree.png');
+  imgCenter = loadImage('./images/intro/imgCenter.png');
+  imgLeftOne = loadImage('./images/intro/imgLeftOne.png');
+  imgLeftTwo = loadImage('./images/intro/imgLeftTwo.png');
+  imgLeftThree = loadImage('./images/intro/imgLeftThree.png');
+  imgRightOne = loadImage('./images/intro/imgRightOne.png');
+  imgRightTwo = loadImage('./images/intro/imgRightTwo.png');
+  imgRightThree = loadImage('./images/intro/imgRightThree.png');
 
-  monkeyStillOne = loadImage('/images/intro/monkeyStillOne.png');
-  monkeyStillTwo = loadImage('/images/intro/monkeyStillTwo.png');
-  monkeyStillThree = loadImage('/images/intro/monkeyStillThree.png');
-  monkeyStillFour = loadImage('/images/intro/monkeyStillFour.png');
+  monkeyStillOne = loadImage('./images/intro/monkeyStillOne.png');
+  monkeyStillTwo = loadImage('./images/intro/monkeyStillTwo.png');
+  monkeyStillThree = loadImage('./images/intro/monkeyStillThree.png');
+  monkeyStillFour = loadImage('./images/intro/monkeyStillFour.png');
 
 }
 
